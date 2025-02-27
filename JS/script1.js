@@ -5,7 +5,6 @@ const btnPopup = document.querySelector('.btnlogin-popup');
 const iconClose = document.querySelector('.icon-close');
 const menuToggle = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.navigation');
-// const gobackButton = document.querySelector('.back-button');
 
 // Lấy form đăng nhập & đăng ký
 const loginForm = document.querySelector('.form-box.login form');
@@ -46,7 +45,7 @@ document.querySelectorAll('.navigation a, .btnlogin-popup').forEach(item => {
     });
 });
 
-// ✅ Validate Đăng nhập
+//  Validate Đăng nhập
 loginForm.addEventListener('submit', function (e) {
     e.preventDefault();
     let emailInput = loginForm.querySelector('input[type="email"]');
@@ -63,15 +62,15 @@ loginForm.addEventListener('submit', function (e) {
         return;
     }
 
-    alert('Đăng nhập thành công!');
+    // alert('Đăng nhập thành công!');
     // Chuyển hướng sau khi đăng nhập
     setTimeout(() => {
-        window.location.href = "Layout2.html"; // Đổi tên trang cần chuyển hướng
-    }, 1000);
+        window.location.href = "../HTML/Layout2.html"; 
+    }, 500);
     this.submit();
 });
 
-// ✅ Validate Đăng ký
+//  Validate Đăng ký
 registerForm.addEventListener('submit', function (e) {
     e.preventDefault();
     let usernameInput = registerForm.querySelector('input[type="text"]');
@@ -119,4 +118,9 @@ function showError(inputElement, message) {
 //ham quay lai layout3
 function goBack() {
      window.history.back();
+}
+
+//connect Metamask
+function connect(){
+    window.location.href="../HTML/Layout4.html";
 }

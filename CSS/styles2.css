@@ -72,6 +72,7 @@ button:hover {
     color: #007bff;
     text-decoration: none;
     font-weight: bold;
+    transition: 0.5s;
 }
 
 .support a:hover {

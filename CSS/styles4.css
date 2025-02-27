@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+}
+.logo {
+    width: 100px; 
+    height: 100px;
+    background: #e7a7e1;
+    color: #ec871a; 
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; 
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.description{
+    font-size: 25px;
+    font-weight:bold;
+}
+.popup-container {
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+    position: absolute;
+    top: 30em;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.popup-container .popup {
+    width: 100%;
+    max-width: 700px;
+    font-size: 20px;
+    margin: 15px 0px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative; /* Chỉnh lại để không bị lệch */
+    top: auto;
+    left: auto;
+    transform: none;
+}
+.popup label{
+    display: block;
+    font-size: 20px;
+    margin-bottom:15px;
+}
+
+.permissions {
+    padding: 10px;
+    position: relative;
+}
+
+.permissions .text{
+    margin-top: 30px;
+    font-size:18px;
+    font-weight: bold;
+    text-align: left;
+
+}
+.permissions ul {
+    list-style: none;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+.permissions li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.permissions input {
+    transform: scale(1.2);
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0 20px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0px;
+}
+
+button {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.cancel-btn {
+    background: #ccc;
+}
+
+.connect-btn {
+    background: #007bff;
+    color: white;
+}
+.cancel-btn:hover{
+    background: #d5c5c5;
+}
+.connect-btn:hover{
+    background:#0056b3;
+}
+@media (max-width: 768px) {
+    .popup-container {
+        width: 90%;
+        max-width: 500px;
+        position: relative; 
+        top: auto;
+        left: auto;
+        transform: none;
+        margin: 50px auto;
+    }
+
+    .logo {
+        margin-top: 1em;
+        width: 80px;
+        height: 80px;
+        font-size: 20px;
+    }
+
+    .description {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 10px; 
+    }
+
+    .permissions {
+        margin-top: 30px;
+        padding: 10px;
+        text-align: left;
+        position: relative;
+    }
+
+    .permissions .text {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .note {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px;
+        width: 100%;
+    }
+}
