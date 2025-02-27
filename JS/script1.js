@@ -5,6 +5,7 @@ const btnPopup = document.querySelector('.btnlogin-popup');
 const iconClose = document.querySelector('.icon-close');
 const menuToggle = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.navigation');
+// const gobackButton = document.querySelector('.back-button');
 
 // Lấy form đăng nhập & đăng ký
 const loginForm = document.querySelector('.form-box.login form');
@@ -65,7 +66,7 @@ loginForm.addEventListener('submit', function (e) {
     alert('Đăng nhập thành công!');
     // Chuyển hướng sau khi đăng nhập
     setTimeout(() => {
-        window.location.href = "dashboard.html"; // Đổi tên trang cần chuyển hướng
+        window.location.href = "Layout2.html"; // Đổi tên trang cần chuyển hướng
     }, 1000);
     this.submit();
 });
@@ -114,4 +115,8 @@ function validateEmail(email) {
 function showError(inputElement, message) {
     alert(message);
     inputElement.focus();
+}
+//ham quay lai layout3
+function goBack() {
+     window.history.back();
 }
