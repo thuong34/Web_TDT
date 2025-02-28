@@ -5,7 +5,7 @@ const btnPopup = document.querySelector('.btnlogin-popup');
 const iconClose = document.querySelector('.icon-close');
 const menuToggle = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.navigation');
-
+const logoutLink = document.querySelector('.logout-link');
 // Lấy form đăng nhập & đăng ký
 const loginForm = document.querySelector('.form-box.login form');
 const registerForm = document.querySelector('.form-box.register form');
@@ -22,7 +22,7 @@ loginLink.addEventListener('click', () => {
 btnPopup.addEventListener('click', () => {
     wrapper.classList.add('active-popup');
     if (window.innerWidth <= 768) {
-        navigation.classList.remove('active'); // Ẩn menu khi mở login trên mobile
+        navigation.classList.remove('active'); 
     }
 });
 
@@ -124,3 +124,9 @@ function goBack() {
 function connect(){
     window.location.href="../HTML/Layout4.html";
 }
+//connnect trang chuchu
+function connectMetaMask() {
+    window.location.href = "../HTML/Layout5.html";
+}
+
+//dang xuat

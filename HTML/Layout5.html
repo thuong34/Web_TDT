@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+    <link rel="stylesheet" href="../css/styless5_1.css">
+    <link rel="stylesheet" href="../css/styles5_2.css">
+    <link rel="stylesheet" href="../css/styles5_3.css">
+    <link rel="stylesheet" href="../css/styles5_4.css">
+    
+</head>
+<body>
+    <div class="app">
+        <header id="">
+            <div class="grid">
+                <!-- header -->
+                <div class="header">
+                    <div class="header__nav--title"><h1>Trang chủ</h1></div>
+                    <div class="header__user">
+                        <div class="user__name">User Name</div>
+                        <div class="user__img"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main id="main">
+            <div class="grid">                
+                <div class="row no-gutters">
+                    <!-- main nav -->
+                    <nav class="col l-3 m-3 c-0">
+                        <ul class="main__nav">
+                            <li class="nav_item active">Trang chủ</li>
+                            <li class="nav_item">Danh sách nhiệm vụ</li>
+                            <li class="nav_item">Lịch sử giao dịch</li>
+                            <li class="nav_item">Cài đặt tài khoản</li>
+                        </ul>
+                    </nav>
+                    <!-- main content -->
+                    <div class="col l-9 m-9 c-12">
+                        <div class="main__content">
+                            <!-- home -->
+                            <div class="content__item content__home ">
+                                    
+                                <div class="home__balance grid">
+                                    <h4 class="balance__title">Số dư tài khoản</h4>
+                                    <div class="balance__card row no-gutters">
+                                        <div class="col l-5 m-5 c-6">
+
+                                            <div class="card__item">
+                                                <div class="card__item--title">Số dư USDT</div>
+                                                <div class="card__item--number">1,250.00</div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col l-5 l-o-2 m-5 m-o-2 c-6">
+
+                                            <div class="card__item">
+                                                <div class="card__item--title">Số dư Coin</div>
+                                                <div class="card__item--number">25,800</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="home__recent">
+                                    <div class="recent__header">
+                                        <h4 class="recent__title">Hoạt động gần đây</h4>
+                                        <button class="btn__recent--convert btn__outline">Quy đổi điểm</button>
+                                    </div>
+                                    <table class="recent__act">
+                                        <thead>
+                                            <tr>
+                                                <th>Loại giao dịch</th>
+                                                <th>Số lượng</th>
+                                                <th>Thời gian</th>
+                                                <th>Trạng thái</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Quy đổi USDT -> Coin</td>
+                                                <td>1000 USDT</td>
+                                                <td>27/02/2025 - 10:10</td>
+                                                <td>Thành công</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Quy đổi USDT -> Coin</td>
+                                                <td>1000 USDT</td>
+                                                <td>27/02/2025 - 10:10</td>
+                                                <td>Thành công</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>                                    
+                                </div>
+
+                                <div class="home__suggest grid">
+                                    <div class="suggest__header">
+                                        <h4 class="suggest__title">Nhiệm vụ đề xuất</h4>
+                                        <button class="btn__suggest--read btn__outline">Xem tất cả</button>
+                                    </div>
+                                    <div class="suggest__task row no-gutters">
+                                        <div class=" col l-5 m-5 c-12">
+
+                                            <div class="task__card">
+                                                <div class="task__cars--title">Kiểm tra smart contract</div>
+                                                <div class="task__card--content">Kiểm tra và báo cáo lỗi của dự án ABC</div>
+                                                <div class="task__card--footer">
+                                                    <div class="card__coin">500 Coin</div>
+                                                    <div class="card__time">01:45:30</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col l-5 l-o-2 m-5 m-o-2 c-12">
+
+                                            <div class="task__card">
+                                                <div class="task__cars--title">Tham gia AMA</div>
+                                                <div class="task__card--content">Tham gia và cài đặt câu hỏi cho dự án XYZ </div>
+                                                <div class="task__card--footer">
+                                                    <div class="card__coin">300 Coin</div>
+                                                    <div class="card__time">03:25:10</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- tasks list -->
+                            <div class="content__item content__task">                                
+                                <!-- button filter -->
+                                <div class="task__filter--btn">
+                                    <div class="btn__filter--new btn">Nhiệm vụ mới</div>
+                                    <div class="btn__filter--current btn btn__outline">Đang thực hiện</div>
+                                </div>
+
+                                <!-- select filter -->
+                                <div class="task__filter--select">
+                                    <div class="task__filter--date">Nhiệm vụ ngày 25/2/2025</div>
+                                    <select class="task__filter--input">
+                                        <option value="1">Thời gian</option>
+                                        <option value="2">Điểm thưởng</option>
+                                    </select>
+                                </div>
+
+                                <!-- task list -->
+                                <div class="task__list grid">
+                                    <div class="row no-gutters">
+                                        <div class=" col l-12 m-12 c-12">
+                                            
+                                            <div class="task__item">
+                                                <div class="task__item--title">Nhiệm vụ 1:</div>
+
+                                                <div class="task__item--info">
+                                                    <div class="task__item--text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nam dolores! Magni, inventore veniam? Animi ad in perferendis assumenda ducimus, consequuntur magnam commodi odio velit! Vero assumenda dolore dignissimos exercitationem!</div>
+                                                    <div class="task__item--number">
+                                                        <div class="task__item--coin">500 coin</div>
+                                                        <div class="task__item--time">1:30:45</div>
+                                                        <button class="btn__task--submit btn" >Nhận nhiệm vụ</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                        <div class=" col l-12 m-12 c-12">
+                                            
+                                            <div class="task__item success">
+                                                <div class="task__item--title">Nhiệm vụ 1:</div>
+
+                                                <div class="task__item--info">
+                                                    <div class="task__item--text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nam dolores! Magni, inventore veniam? Animi ad in perferendis assumenda ducimus, consequuntur magnam commodi odio velit! Vero assumenda dolore dignissimos exercitationem!</div>
+                                                    <div class="task__item--number">
+                                                        <div class="task__item--coin">500 coin</div>
+                                                        <div class="task__item--time">1:30:45</div>
+                                                        <button class="btn__task--submit btn" >Nhận nhiệm vụ</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>                                
+
+                            </div>
+
+                            <!-- history -->
+                            <div class="content__item content__history active">
+                                <div class="grid">
+                                    <div class="row no-guttesr">
+                                        <div class="col l-12 m-12 c-12">
+                                            <div class="history__card--balance">
+                                                <div class="card__balance--coin">
+                                                    <p class="card__item--title">Số dư hiện tại</p>
+                                                    <p class="card__item--number">25,800 COIN</p>
+
+                                                </div>
+                                                <div class="card__balance--usdt">
+                                                    <p class="card__item--title">Tương đương</p>
+                                                    <p class="card__item--number">258 USDT</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col l-12 m-12 c-12">
+
+                                            <div class="history__filterBtn">
+                                                <span>Lọc theo: </span>
+                                                <button class="btn__filterAll" type="button">Tất cả</button>
+                                                <button class="btn__filterConvert btn__outline" type="button">Quy đổi</button>
+                                                <button class="btn__filterTask btn__outline" type="button">Nhiệm vụ</button>
+                                            </div>
+
+                                        </div>
+                                        <div class="col l-12 m-12 c-12">
+                                            <table class="history__table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Loại giao dịch</th>
+                                                        <th>Số lượng</th>
+                                                        <th>Thời gian</th>
+                                                        <th>Trạng thái</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Quy đổi USDT -> Coin</td>
+                                                        <td>1000 USDT</td>
+                                                        <td>27/02/2025 - 10:10</td>
+                                                        <td>Thành công</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- setting account -->
+                            <div class="content__item content__setting">
+                                <div class="wallet-info">
+                                    <div class="wallet-details">
+                                        <p><strong>Thông tin ví đã kết nối</strong></p>
+                                        <p class="wallet-address">0x71C95abjsbwbkncjscbjsjc</p>
+                                    </div>
+                                    <div class="wallet-actions">
+                                        <div id="logout-popup" class="popup">
+                                            <div class="popup-content">
+                                                <p>Bạn có chắc chắn muốn đăng xuất khỏi tài khoản này không?</p>
+                                                <div class="popup-buttons">
+                                                    <button id="cancel-logout">Hủy</button>
+                                                    <button id="confirm-logout">Đăng xuất</button> 
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <button class="logout-link">Đăng xuất</button>
+                                        <div id="delete-popup" class="popup">
+                                            <div class="popup-content">
+                                                <b>Xóa tài khoản</b>
+                                                <img src="../IMG/danger.png" alt="cảnh báo">
+                                                <p>Bạn có chắc chắn muốn xóa tài khoản này không?</p>
+                                                <div class="popup-buttons">
+                                                    <button id="cancel-delete">Hủy</button>
+                                                    <button id="confirm-delete">Xóa</button> 
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <button class="delete-link">Xóa tài khoản</button>
+                                    </div>
+                                </div>
+
+                                <!-- Hồ sơ người dùng -->
+                                <div class="user-profile">
+                                    <h3>Hồ sơ người dùng</h3>
+                                    <label for="username">Tên hiển thị:</label>
+                                    <input type="text" id="username" value="0x71C95abjsbwbkncjscbjsjc">
+
+                                    <label for="email">Email:</label>
+                                    <input type="email" id="email" placeholder="Nhập email của bạn để nhận thông báo">
+                                </div>
+
+                                <!-- Cài đặt thông báo -->
+                                <div class="notification-settings">
+                                    <h3>Cài đặt thông báo</h3>
+                                    <div class="toggle">
+                                        <span>Nhiệm vụ mới</span>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="toggle">
+                                        <span>Thời gian nhiệm vụ sắp hết</span>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="toggle">
+                                        <span>Biến động số dư</span>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+
+        </main>
+
+        <!-- modal when click button convert(btn__recent--convert): add className " modal__convert" -->
+        <div class="modal__wrapper">
+            <div class="modal">
+                <div class="modal__title">Quy đổi điểm</div>
+                <form class="modal__content" action="" method="get">
+
+                    <div class="modal__content--input">Số lượng USDT
+                        <input class="input__usdt" name="input__usdt" type="number" value="0" placeholder="Nhập số điểm...">
+                    </div>
+                    <div class="modal__content--icon">Icon convert</div>
+                    <div class="modal__content--input">Số lượng Coin
+                        <input class="input__coin" name="input__coin" type="number" disabled>                        
+                    </div>
+                    <p style="margin: 10px 0;">Tỷ lệ: 1 USDT = 100 Coin</p>
+                    <div class="modal__btn">
+                        <button class="modal__btn--change modal__btn--convert" type="submit">Xác nhận quy đổi</button>
+                        <button class="modal__btn--nochange modal__btn--destroy btn__outline" type="button">Hủy</bu>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <!-- popup when click button "Nhận thưởng" (btn__task--submit): add className "modal__award"  -->
+        <div class="modal__wrapper">
+            <div class="modal">
+                <div class="modal__title">Nhiệm vụ hoàn thành</div>
+                <div class="modal__content">
+                    <div class="modal__content--text">Bạn đã hoàn thành nhiệm vụ thành công</div>
+                    <div class="modal__content--coin">+500 coin</div>
+                    <div class="modal__btn">
+                        <button class="modal__btn--change modal__btn--back">Quay lại trang chủ</button>
+                        <button class="modal__btn--nochange modal__btn--continue btn__outline" type="button">Tiếp tục làm nhiệm vụ</bu>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+            <div class="copy-right">@2025 Hệ thống giao dịch bằng tiền điện tử</div>
+        </footer>
+    </div>
+</body>
+<script src="../js/main.js"></script>
+</html>x

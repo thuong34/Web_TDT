@@ -1,0 +1,54 @@
+:root{
+    --color-table-head: #d9d9d9;
+    --color-card: #EFEFEF;
+    --color-success: #00FF00;
+    --color-submit: #007BFF;
+    --color-over: #FE2020;
+    --color-processing: #FFD700;
+    --color-purple: #DBBFFF;/*mkt*/
+    --color-orange: #FCDFBD;/*public*/
+    --color-cyan: #E6F7FF;/*app, smart*/
+    --color-green: #E5F5E4;/*test*/
+    --height-header: 46px;
+    --height-footer: 30px;
+
+}
+*{margin: 0;padding: 0;box-sizing: border-box;}
+
+html{
+    font-size: 62.5%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+    /* overflow-x: hidden; */
+}
+
+li{list-style: none;}
+
+/* table */
+table{ width: 100%;
+border-radius: 5px;
+border-collapse: collapse;overflow: hidden;}
+th, td{
+    text-align: left;
+    border-bottom: 1px solid var(--color-table-head);
+    padding: 5px;
+}
+th{background-color: var(--color-table-head);}
+
+/* button */
+button, .btn{
+    /* display: block; */
+    outline: none;
+    border: none;    
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+button:hover, .btn:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+.btn__outline{     
+    background-color: transparent;
+    border: 1px solid currentColor;
+}

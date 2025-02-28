@@ -12,6 +12,17 @@ header {
     /* margin-top: 50px; */
     padding: 100px 20px;
 }
+/* body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('../IMG/background.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+} */
 .logo {
     width: 100px; 
     height: 100px;
@@ -77,4 +88,11 @@ button:hover {
 
 .support a:hover {
     text-decoration: underline;
+}
+footer{
+    text-align: center;
+    font-size:20px;
+    margin-top:9em;
+    padding: 15px 0px;
+    border-top: 2px solid #ccc;
 }
