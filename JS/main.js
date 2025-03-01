@@ -24,7 +24,6 @@ navItems.forEach((item, index)=>{
     })
 })
 
-const btnAwards = document.querySelectorAll(".task__item.success .btn__task--submit")
 const btnConvert = document.querySelector(".btn__recent--convert")
 const modals = document.querySelectorAll(".modal__wrapper")
 const modalConvert = modals[0]
@@ -45,26 +44,34 @@ btnConvert.addEventListener('click',(e)=>{
     }
     // dong modal khi click button "hủy"
     closeModal(modalConvert,'modal__convert',formConvert)
-    // dong modal khi click vao cung ngoai modal??
+    // dong modal khi click vao vung ngoai modal??
     modalConvert.onclick = (e)=>{
         if(!e.target.closest('.modal')){
             modalConvert.classList.remove('modal__convert')
         }
     }
 })
-//mo modal nhan thuong
-btnAwards.forEach((btn)=>{
-    btn.addEventListener('click',(e)=>{
+//mo modal nhan thuong : "event delegation"
+document.querySelector('.task__list .row').addEventListener('click',(e)=>{
+    const btnTaskSubmit = e.target.closest('.task__item.success .btn__task--submit')
+    if(btnTaskSubmit){
         modalAward.classList.add("modal__award")
+        // lấy số coin ở task--item
+        let taskItemNumber = btnTaskSubmit.closest('.task__item--number')
+        let coins = taskItemNumber.querySelector('.task__item--coin span').innerText
+        // gán vào content__coin--value ở modal
+        let coinModal = modalAward.querySelector('.content__coin--value')
+        coinModal.innerHTML = coins
+        
+        // dong modal khi click vao button / vung ngoai modal
         const formAward = modalAward.querySelector('.modal__btn')
         closeModal(modalAward,'modal__award',formAward)
-        // dong modal khi click vao cung ngoai modal??
         modalAward.onclick = (e)=>{
             if(!e.target.closest('.modal')){
                 modalAward.classList.remove('modal__award')
             }
         }
-    })
+    }
 })
 
 // dong modal
@@ -75,6 +82,42 @@ function closeModal(modal,modalClass,modalForm){
     })
 }
 
+//dsach nhiệm vụ: bấm button chuyển task list
+const toggleTaskList = (showNew)=>{
+    document.querySelector('.task__newList').classList.toggle('hidden',!showNew)
+    document.querySelector('.task__processingList').classList.toggle('hidden',showNew)
+}
+document.querySelector('.btn__filter--new').addEventListener('click',()=>toggleTaskList(true))
+document.querySelector('.btn__filter--current').addEventListener('click',()=>toggleTaskList(false))
+
+// lọc nhiệm vụ bằng select điểm thưởng, thời gian
+let selectTaskInput = document.querySelector('.task__filter--input')
+selectTaskInput.onchange = (e)=>{
+    const sortBy = e.target.value
+    // lấy newList ko có .hidden hoặc lấy processingList ko có .hidden
+    const taskListContainer = document.querySelector('.task__newList:not(.hidden), .task__processingList:not(.hidden)')
+    const tasks = Array.from(taskListContainer.querySelectorAll('.col'))
+
+    tasks.sort((a, b)=>{
+        //doi tgian ra giay
+        const timeToSeconds = (timeStr)=>{
+            const [hours, minutes, seconds] = timeStr.split(":").map(Number)
+            return hours*3600 + minutes*60 + seconds
+        }
+
+        const aValue = 
+        sortBy === "1" ? timeToSeconds(a.querySelector('.task__item--time').innerText) : Number(a.querySelector('.task__item--coin span').innerText)
+        const bValue = 
+        sortBy === "1" ? timeToSeconds(b.querySelector('.task__item--time').innerText) : Number(b.querySelector('.task__item--coin span').innerText)
+
+        return aValue > bValue ? 1 : -1 //nếu a>b thì đổi vị trí
+    })
+
+    taskListContainer.innerHTML = "" //xóa để tránh bị trùng lặp dl
+    tasks.forEach((task)=>{
+        taskListContainer.appendChild(task)
+    })
+}
 // Note: chưa đổi lại coin--> usdt
 // chưa chuyển lại trang chủ khi bấm button ở modal
 //logout

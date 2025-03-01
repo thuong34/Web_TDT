@@ -67,7 +67,6 @@ loginForm.addEventListener('submit', function (e) {
     setTimeout(() => {
         window.location.href = "../HTML/Layout2.html"; 
     }, 500);
-    this.submit();
 });
 
 //  Validate Đăng ký
