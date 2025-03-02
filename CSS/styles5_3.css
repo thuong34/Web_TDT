@@ -1,33 +1,63 @@
 .app{width: 100vw;font-size: 1.6rem;}
-/* #main{padding-top: 20px;
-} */
 
-/* header */
 .header{
     height: var(--height-header);
-    padding: 0 30px;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
 }
 .header__nav--title{
     font-size: 1.6rem;
 }
-.header__user{
+.header_right {
     display: flex;
     align-items: center;
+    gap: 5px;
+    margin-top: 0;
 }
-.user__name{
-    font-size: 1.4rem;
-    margin-right: 10px;
+
+.header__user {
+    display: flex;
+    align-items: center; 
+    gap: 14px;
 }
-.user__img{
+
+.user_info {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start;
+    gap: 5px;
+    text-align: center;
+    
+}
+
+.user__img {
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    margin-right: 40px;
     background: url("") center / cover grey;
 }
 
-/* nav */
+.menu-toggle {
+    margin-top: 5px;
+    font-size: 2rem;
+    cursor: pointer;
+    justify-content: center;
+    width: 100%;
+    margin-left:6px;
+    display: none;
+    
+}
+
+.user__name {
+    font-size: 1.4rem;
+    white-space: nowrap;
+}
+
 .main__nav{
-    /* height: 100vh; */
+    width: 25em;
     height: calc(100vh - var(--height-footer) - var(--height-header));
     border-right: 1px solid var(--color-table-head);
     padding: 20px 20px 0;
@@ -38,15 +68,16 @@
     margin-bottom: 8px;
 }
 .nav_item.active, .nav_item:hover{
+    
     border-radius: 5px;
     border-left: 2px solid var(--color-submit);
     background-color: var(--color-cyan);
 }
-/* main content*/
-/* .main__content{padding-top: 10px;} */
+
 .content__item{
     display: none;
     padding: 0 30px;
+    
 }
 .content__item.active{
     display: block;
@@ -54,7 +85,7 @@
 .content__item h4{
     font-weight: 600;
 }
-/* home balance */
+
 .card__item{
     border-radius: 5px;
     margin-top: 10px;
@@ -114,13 +145,11 @@
 .task__item--number{flex: 1;text-align: end;}
 .task__item--coin{color:var(--color-submit);font-weight: 500;}
 .task__item--time{color: var(--color-over);margin: 10px;}
-    /* khi thêm class vào task__item: success, processing, over mặc định là màu blue*/
 .task__item .btn__task--submit{background-color: var(--color-submit);}
 .task__item.success .btn__task--submit{background-color: var(--color-success);}
 .task__item.processing .btn__task--submit{background-color: var(--color-processing);}
 .task__item.over .btn__task--submit{background-color: var(--color-over);}
 
-/* popup-modal  when button "Nhận thưởng" (btn__task--submit)*/
 .app{position: relative;}
 .modal__wrapper{
     position: fixed;
@@ -188,4 +217,94 @@
     line-height: var(--height-footer);
     font-size: 1.6rem;
     text-align: center;
+}
+/* Menu trượt */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    padding-top: 60px;
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
+}
+.main__nav li a{
+    text-decoration: none;
+    font-size: 16px;
+    color:black;
+}
+.mobile-nav.active {
+    left: 0;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        font-size: 3rem;
+        cursor: pointer;
+        color: black;
+        text-align: center;
+    }
+    .mobie-nav {
+        display: none; 
+        position: absolute;
+        right: 10px;
+        width: 200px;
+        background: rgba(30, 29, 29, 0.919);
+        padding: 10px;
+        border-radius: 5px;
+        height: 14em;
+    }
+
+    .mobie-nav.active { 
+        display: block; 
+    }
+
+    .mobie-nav ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .mobie-nav li {
+        padding: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .mobie-nav li a {
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+        display: block;
+    }
+    .mobie-nav li:hover {
+        width: 50%;
+        background: rgba(255, 255, 255, 0.2);
+    }
+    .user__img{
+        display: none;
+    }
+    .user__name{
+        display: none;
+    }
+    .nav_item.active, .nav_item:hover{
+        background: none;
+    }
+    
+}
+@media (800px <= width <= 1024px){
+    .main__nav{
+        width: 12em;
+        height: calc(100vh - var(--height-footer) - var(--height-header));
+        border-right: 1px solid var(--color-table-head);
+        padding: 20px 20px 0;
+    }
 }
