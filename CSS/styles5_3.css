@@ -123,25 +123,32 @@
     padding-top: 10px;
     border-top: 1px solid var(--color-table-head);
 }
+
 /* filter task button */
-.task__filter--btn{display: flex;justify-content: space-around;}
+.task__filter--btn{display: flex;justify-content: space-around;gap:10px}
 .task__filter--select{margin: 20px 0;}
-.btn__filter--new{background-color: var(--color-submit);}
+.btn__filter--new{background-color: var(--color-submit);color: #007BFF}
 .btn__filter--current{color: var(--color-submit);}
-/* .task__filter--date{} */
-.task__filter--input{
-    outline: none;
-    border: 1px solid var(--color-card);
-    border-radius: 5px;
-    padding: 5px;
+
+.task__filter--btn {
+    display: flex;
+    justify-content: space-around;
 }
-/* task list */
-.task__item{
-    border: 1px solid var(--color-table-head);
+
+.btn {
+    padding: 10px 15px;
+    cursor: pointer;
     border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 20px;
+    transition: background 0.3s, color 0.3s;
+    background-color: white; 
+    border: 1px solid #007BFF; 
 }
+
+.btn.active {
+    background-color: #007BFF;
+    color: white;
+}
+
 .task__item--text{flex: 3}
 .task__item--number{flex: 1;text-align: end;}
 .task__item--coin{color:var(--color-submit);font-weight: 500;}

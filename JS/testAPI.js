@@ -135,7 +135,7 @@ fetch(todosAPI)
                 </div>                
             </div>`
         }).join('')
-        processingTaskList.innerHTML = htmlProcessing
+       
         // console.log(htmlNew)
     })
     .catch((error) => {

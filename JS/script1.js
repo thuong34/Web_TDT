@@ -3,8 +3,6 @@ const loginLink = document.querySelector('.login-link');
 const registerLink = document.querySelector('.register-link');
 const btnPopup = document.querySelector('.btnlogin-popup');
 const iconClose = document.querySelector('.icon-close');
-// const menuToggle = document.querySelector('.menu-toggle');
-// const navigation = document.querySelector('.navigation');
 const logoutLink = document.querySelector('.logout-link');
 // Lấy form đăng nhập & đăng ký
 const loginForm = document.querySelector('.form-box.login form');
@@ -47,8 +45,6 @@ loginForm.addEventListener('submit', function (e) {
         showError(passwordInput, 'Mật khẩu phải có ít nhất 6 ký tự!');
         return;
     }
-
-    // alert('Đăng nhập thành công!');
     // Chuyển hướng sau khi đăng nhập
     setTimeout(() => {
         window.location.href = "../HTML/Layout2.html";
@@ -83,8 +79,6 @@ registerForm.addEventListener('submit', function (e) {
         alert('Bạn phải đồng ý với điều khoản và điều kiện!');
         return;
     }
-
-    // alert('Đăng ký thành công!');
     wrapper.classList.remove('active');
     this.submit();
 });

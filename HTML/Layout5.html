@@ -14,7 +14,6 @@
 
 <body>
     <div class="app">
-        <!-- header -->
         <header class="grid">
             <div class="header f-between">
                 <div class="header__nav--title">
@@ -37,7 +36,6 @@
 
         <main id="main" class="grid">
             <div class="row no-gutters">
-                <!-- main nav -->
                 <div class="mobie-nav">
                     <ul class="main__nav">
                         <li class="nav_item "><a href="#home">Trang chủ</a></li>
@@ -46,13 +44,12 @@
                         <li class="nav_item"><a href="#settings">Cài đặt tài khoản</a></li>
                     </ul>
                 </div>
-                <!-- main content -->
                 <div class="col l-9 m-9 c-12">
-                    <div class="main__content ">
+                    <div class="main__content">
                         <!-- home -->
                         <div class="content__item content__home ">
 
-                            <div class="home__balance grid">
+                            <div class="home__balance">
                                 <h4 class="home__balance--title">Số dư tài khoản</h4>
                                 <div class="home__balance--card row no-gutters">
 
@@ -144,8 +141,8 @@
                         <div class="content__item content__task active">
                             <!-- button filter -->
                             <div class="task__filter--btn">
-                                <div class="btn__filter--new btn btn-primary">Nhiệm vụ mới</div>
-                                <div class="btn__filter--current btn btn__outline primary">Đang thực hiện</div>
+                                <div class="btn__filter--new active btn">Nhiệm vụ mới</div>
+                                <div class="btn__filter--current btn">Đang thực hiện</div>
                             </div>
 
                             <!-- select filter -->
@@ -158,149 +155,136 @@
                             </div>
 
                             <!-- task list -->
-                            <div class="task__list grid">
-                                <div class="row no-gutters">
+                            <div class="task__list ">
+                                <div class="task__newList"></div>
+                                <div class="task__processingList hidden"></div>
+                            </div>
+                        </div>
+                    </div>
 
-                                    <div class="col l-12 m-12 c-12">
-                                        <div class="task__newList"></div>
+                    <!-- history -->
+                    <div class="content__item content__history ">
+                        <div class="grid">
+                            <div class="row no-guttesr">
+                                <div class="col l-12 m-12 c-12">
+                                    <div class="history__card--balance f-between">
+                                        <div class="card__balance--coin">
+                                            <p class="card__item--title">Số dư hiện tại</p>
+                                            <p class="card__item--number">25,800 COIN</p>
+                                        </div>
+                                        <div class="card__balance--usdt">
+                                            <p class="card__item--title">Tương đương</p>
+                                            <p class="card__item--number">258 USDT</p>
+                                        </div>
                                     </div>
-
-                                    <div class="col l-12 m-12 c-12">
-                                        <div class="task__processingList hidden"></div>
+                                </div>
+                                <div class="col l-12 m-12 c-12">
+                                    <div class="history__filterBtn">
+                                        <span>Lọc theo: </span>
+                                        <button class="btn__filterAll active" type="button">Tất cả</button>
+                                        <button class="btn__filterConvert" type="button">Quy
+                                            đổi</button>
+                                        <button class="btn__filterTask" type="button">Nhiệm
+                                            vụ</button>
                                     </div>
 
                                 </div>
-                            </div>
-
-                        </div>
-
-                        <!-- history -->
-                        <div class="content__item content__history ">
-                            <div class="grid">
-                                <div class="row no-guttesr">
-                                    <div class="col l-12 m-12 c-12">
-
-                                        <div class="history__card--balance f-between">
-                                            <div class="card__balance--coin">
-                                                <p class="card__item--title">Số dư hiện tại</p>
-                                                <p class="card__item--number">25,800 COIN</p>
-
-                                            </div>
-                                            <div class="card__balance--usdt">
-                                                <p class="card__item--title">Tương đương</p>
-                                                <p class="card__item--number">258 USDT</p>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="col l-12 m-12 c-12">
-
-                                        <div class="history__filterBtn">
-                                            <span>Lọc theo: </span>
-                                            <button class="btn__filterAll btn_primary" type="button">Tất cả</button>
-                                            <button class="btn__filterConvert btn__outline primary" type="button">Quy
-                                                đổi</button>
-                                            <button class="btn__filterTask btn__outline primary" type="button">Nhiệm
-                                                vụ</button>
-                                        </div>
-
-                                    </div>
-                                    <div class="col l-12 m-12 c-12">
-                                        <table class="history__table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Loại giao dịch</th>
-                                                    <th>Số lượng</th>
-                                                    <th>Thời gian</th>
-                                                    <th>Trạng thái</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Quy đổi USDT -> Coin</td>
-                                                    <td>1000 USDT</td>
-                                                    <td>27/02/2025 - 10:10</td>
-                                                    <td>Thành công</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                <div class="col l-12 m-12 c-12">
+                                    <table class="history__table">
+                                        <thead>
+                                            <tr>
+                                                <th>Loại giao dịch</th>
+                                                <th>Số lượng</th>
+                                                <th>Thời gian</th>
+                                                <th>Trạng thái</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Quy đổi USDT -> Coin</td>
+                                                <td>1000 USDT</td>
+                                                <td>27/02/2025 - 10:10</td>
+                                                <td>Thành công</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- setting account -->
-                        <div class="content__item content__setting">
-                            <div class="wallet-info">
-                                <div class="wallet-details">
-                                    <p><strong>Thông tin ví đã kết nối</strong></p>
-                                    <p class="wallet-address">0x71C95abjsbwbkncjscbjsjc</p>
-                                </div>
-                                <div class="wallet-actions">
-                                    <div id="logout-popup" class="popup">
-                                        <div class="popup-content">
-                                            <p>Bạn có chắc chắn muốn đăng xuất khỏi tài khoản này không?</p>
-                                            <div class="popup-buttons">
-                                                <button id="cancel-logout">Hủy</button>
-                                                <button id="confirm-logout">Đăng xuất</button>
-                                            </div>
+                    <!-- setting account -->
+                    <div class="content__item content__setting">
+                        <div class="wallet-info">
+                            <div class="wallet-details">
+                                <p><strong>Thông tin ví đã kết nối</strong></p>
+                                <p class="wallet-address">0x71C95abjsbwbkncjscbjsjc</p>
+                            </div>
+                            <div class="wallet-actions">
+                                <div id="logout-popup" class="popup">
+                                    <div class="popup-content">
+                                        <p>Bạn có chắc chắn muốn đăng xuất khỏi tài khoản này không?</p>
+                                        <div class="popup-buttons">
+                                            <button id="cancel-logout">Hủy</button>
+                                            <button id="confirm-logout">Đăng xuất</button>
                                         </div>
                                     </div>
-                                    <button class="logout-link">Đăng xuất</button>
-                                    <div id="delete-popup" class="popup">
-                                        <div class="popup-content">
-                                            <b>Xóa tài khoản</b>
-                                            <img src="../IMG/danger.png" alt="cảnh báo">
-                                            <p>Bạn có chắc chắn muốn xóa tài khoản này không?</p>
-                                            <div class="popup-buttons">
-                                                <button id="cancel-delete">Hủy</button>
-                                                <button id="confirm-delete">Xóa</button>
-                                            </div>
+                                </div>
+                                <button class="logout-link">Đăng xuất</button>
+                                <div id="delete-popup" class="popup">
+                                    <div class="popup-content">
+                                        <b>Xóa tài khoản</b>
+                                        <img src="../IMG/danger.png" alt="cảnh báo">
+                                        <p>Bạn có chắc chắn muốn xóa tài khoản này không?</p>
+                                        <div class="popup-buttons">
+                                            <button id="cancel-delete">Hủy</button>
+                                            <button id="confirm-delete">Xóa</button>
                                         </div>
                                     </div>
-                                    <button class="delete-link">Xóa tài khoản</button>
                                 </div>
+                                <button class="delete-link">Xóa tài khoản</button>
                             </div>
+                        </div>
 
-                            <!-- Hồ sơ người dùng -->
-                            <div class="user-profile">
-                                <h3>Hồ sơ người dùng</h3>
-                                <label for="username">Tên hiển thị:</label>
-                                <input type="text" id="username" value="0x71C95abjsbwbkncjscbjsjc">
+                        <!-- Hồ sơ người dùng -->
+                        <div class="user-profile">
+                            <h3>Hồ sơ người dùng</h3>
+                            <label for="username">Tên hiển thị:</label>
+                            <input type="text" id="username" value="0x71C95abjsbwbkncjscbjsjc">
 
-                                <label for="email">Email:</label>
-                                <input type="email" id="email" placeholder="Nhập email của bạn để nhận thông báo">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" placeholder="Nhập email của bạn để nhận thông báo">
+                        </div>
+
+                        <!-- Cài đặt thông báo -->
+                        <div class="notification-settings">
+                            <h3>Cài đặt thông báo</h3>
+                            <div class="toggle">
+                                <span>Nhiệm vụ mới</span>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
                             </div>
-
-                            <!-- Cài đặt thông báo -->
-                            <div class="notification-settings">
-                                <h3>Cài đặt thông báo</h3>
-                                <div class="toggle">
-                                    <span>Nhiệm vụ mới</span>
-                                    <label class="switch">
-                                        <input type="checkbox" checked>
-                                        <span class="slider"></span>
-                                    </label>
-                                </div>
-                                <div class="toggle">
-                                    <span>Thời gian nhiệm vụ sắp hết</span>
-                                    <label class="switch">
-                                        <input type="checkbox" checked>
-                                        <span class="slider"></span>
-                                    </label>
-                                </div>
-                                <div class="toggle">
-                                    <span>Biến động số dư</span>
-                                    <label class="switch">
-                                        <input type="checkbox" checked>
-                                        <span class="slider"></span>
-                                    </label>
-                                </div>
+                            <div class="toggle">
+                                <span>Thời gian nhiệm vụ sắp hết</span>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="toggle">
+                                <span>Biến động số dư</span>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+    </div>
     </div>
 
     </main>
@@ -357,5 +341,6 @@
 <script src="../js/main.js"></script>
 <script src="../js/testAPI.js"></script>
 <script src="../js/script1.js"></script>
+<script src="../js/test.js"></script>
 
 </html>

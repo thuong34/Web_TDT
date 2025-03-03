@@ -24,7 +24,6 @@ header {
     left: 0;
     width: 100%;
     padding: 20px 60px;
-    /* background: red; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,44 +36,7 @@ header {
     user-select: none;
 }
 
-.menu-toggle {
-    display: none;
-    font-size: 30px;
-    cursor: pointer;
-    color: white;
-    right:1em;
-    top:1em;
-    position: absolute;
-}
-.navigation a {
-    position: relative;
-    font-size: 1.1em;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    margin-left: 40px;
-}
-
-.navigation a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -3px;
-    width: 100%;
-    height: 3px;
-    background: #fff;
-    border-radius: 5px;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform .5s;
-}
-
-.navigation a:hover::after {
-    transform-origin: left;
-    transform: scaleX(1);
-}
-
-.navigation .btnlogin-popup {
+.btn_login .btnlogin-popup {
     width: 130px;
     height: 50px;
     background: transparent;
@@ -89,60 +51,10 @@ header {
 
 }
 
-.navigation .btnlogin-popup:hover {
+.btn_login .btnlogin-popup:hover {
     cursor: pointer;
     background-color: #fff;
     color: black;
-}
-
-@media screen and (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-        cursor: pointer;
-    }
-
-    .logo {
-        position: absolute;
-        left: 1em;
-        top: 1em;
-    }
-
-    .navigation {
-        display: none;
-        flex-direction: column;
-        align-items: center; /* Căn giữa các mục */
-        position: absolute;
-        top: 75px;
-        right:0;
-        transform: translateX(1);
-        width: 55%;
-        background: rgba(0, 0, 0, 0.8);
-        text-align: center;
-        padding: 10px 10px;
-        border-radius: 8px;
-        transition: 0.3s ease;
-    }
-
-    .navigation a,
-    .navigation button {
-        display: block;
-        width: 50%; 
-        padding: 8px;
-        color: white;
-        text-decoration: none;
-        text-align: center;
-    }
-
-    .navigation button {
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 5px;
-    }
-
-    .navigation.active {
-        display: flex;
-    }
 }
 
 .wrapper{
@@ -302,4 +214,21 @@ header {
 
 .login-register p a:hover{
     text-decoration: underline;
+}
+
+@media screen and (max-width: 480px) {
+    .btn_login .btnlogin-popup{
+        margin-left:5em;
+    }
+    .wrapper {
+        width: 85%;
+        padding: 20px;
+    }
+    .wrapper h2 {
+        font-size: 1.5em;
+    }
+    .btn {
+        height: 40px;
+        font-size: 0.9em;
+    }
 }

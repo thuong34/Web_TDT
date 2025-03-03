@@ -90,7 +90,13 @@ header {
 .back-button:hover {
     background: #0056b3;
 }
-
+footer{
+    text-align: center;
+    font-size:20px;
+    margin-top:9em;
+    padding: 15px 0px;
+    border-top: 2px solid #ccc;
+}
 @media (max-width: 768px) {
     .logo {
         font-size: 40px;
@@ -101,15 +107,19 @@ header {
     }
 
     .step p {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .download-link {
-        font-size: 14px;
+        font-size: 16px;
         padding: 8px 15px;
     }
     .back-button {
-        font-size: 14px;
-        padding: 8px 15px;
+        font-size: 16px;
+        padding: 8px 0px;
+    }
+    footer {
+        font-size: 16px;
+        margin-top: 0;
     }
 }

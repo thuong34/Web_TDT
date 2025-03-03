@@ -9,20 +9,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* margin-top: 50px; */
     padding: 100px 20px;
 }
-/* body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: url('../IMG/background.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-} */
 .logo {
     width: 100px; 
     height: 100px;
@@ -41,7 +29,6 @@ header {
     text-align: center;
     margin-top: 50px;
 }
-
 h1 {
     font-size: 38px;
     font-weight: bold;
@@ -95,4 +82,29 @@ footer{
     margin-top:9em;
     padding: 15px 0px;
     border-top: 2px solid #ccc;
+}
+@media screen and (max-width: 768px) {
+    header {
+        padding: 60px 20px;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    p {
+        font-size: 14px;
+    }
+    
+    button {
+        font-size: 16px;
+        height: 50px;
+        width: 50%;
+        border-radius: 10px;
+    }
+    
+    footer {
+        font-size: 16px;
+        margin-top: 18em;
+    }
 }
