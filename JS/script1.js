@@ -30,27 +30,7 @@ btnPopup.addEventListener('click', () => {
 iconClose.addEventListener('click', () => {
     wrapper.classList.remove('active-popup');
 });
-//thanh 3 gachdocument.addEventListener("DOMContentLoaded", function () {
-document.addEventListener("DOMContentLoaded", function () {
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mobileNav = document.querySelector('.mobile-nav'); // Sửa chính tả
-    
-        if (menuToggle && mobileNav) {
-            menuToggle.addEventListener('click', function () {
-                mobileNav.classList.toggle('active');
-            });
-    
-            // Đóng menu khi click ra ngoài
-            document.addEventListener('click', function (event) {
-                if (!mobileNav.contains(event.target) && !menuToggle.contains(event.target)) {
-                    mobileNav.classList.remove('active');
-                }
-            });
-        } else {
-            console.error("Không tìm thấy phần tử menu-toggle hoặc mobile-nav");
-        }
-    });
-    
+ 
 //  Validate Đăng nhập
 loginForm.addEventListener('submit', function (e) {
     e.preventDefault();

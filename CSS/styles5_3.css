@@ -10,6 +10,7 @@
 .header__nav--title{
     font-size: 1.6rem;
 }
+
 .header_right {
     display: flex;
     align-items: center;
@@ -76,7 +77,7 @@
 
 .content__item{
     display: none;
-    padding: 0 30px;
+    margin: 0 30px;
     
 }
 .content__item.active{

@@ -38,16 +38,14 @@
         <main id="main" class="grid">
             <div class="row no-gutters">
                 <!-- main nav -->
-                <!-- <div class="col l-3 m-3 c-0"> -->
-                    <div class="mobie-nav">
-                        <ul class="main__nav">
-                            <li class="nav_item "><a href="#home">Trang chủ</a></li>
-                            <li class="nav_item"><a href="#task-list">Danh sách nhiệm vụ</a></li>
-                            <li class="nav_item"><a href="#history">Lịch sử giao dịch</a></li>
-                            <li class="nav_item"><a href="#settings">Cài đặt tài khoản</a></li>
-                        </ul>
-                    </div>
-                <!-- </div> -->
+                <div class="mobie-nav">
+                    <ul class="main__nav">
+                        <li class="nav_item "><a href="#home">Trang chủ</a></li>
+                        <li class="nav_item"><a href="#task-list">Danh sách nhiệm vụ</a></li>
+                        <li class="nav_item"><a href="#history">Lịch sử giao dịch</a></li>
+                        <li class="nav_item"><a href="#settings">Cài đặt tài khoản</a></li>
+                    </ul>
+                </div>
                 <!-- main content -->
                 <div class="col l-9 m-9 c-12">
                     <div class="main__content ">
@@ -353,54 +351,7 @@
         <div class="copy-right">@2025 Hệ thống giao dịch bằng tiền điện tử</div>
     </footer>
     </div>
-    
-    
 </body>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mobileNav = document.querySelector('.mobile-nav');
-        const navItems = document.querySelectorAll('.main__nav li a');
-
-        menuToggle.addEventListener('click', function () {
-            mobileNav.classList.toggle('active');
-        });
-
-        navItems.forEach(item => {
-            item.addEventListener('click', function () {
-                mobileNav.classList.remove('active');
-            });
-        });
-
-        document.addEventListener('click', function (event) {
-            if (!mobileNav.contains(event.target) && !menuToggle.contains(event.target)) {
-                mobileNav.classList.remove('active');
-            }
-        });
-    });
-</script>
-<script>
-   document.addEventListener("DOMContentLoaded", function () {
-    const menuToggle = document.querySelector(".menu-toggle");
-    const mobileNav = document.querySelector(".mobie-nav"); // Lưu ý: kiểm tra class có đúng không
-
-    if (menuToggle && mobileNav) {
-        menuToggle.addEventListener("click", function () {
-            mobileNav.classList.toggle("active");
-        });
-
-        // Đóng menu khi click ra ngoài
-        document.addEventListener("click", function (event) {
-            if (!mobileNav.contains(event.target) && !menuToggle.contains(event.target)) {
-                mobileNav.classList.remove("active");
-            }
-        });
-    } else {
-        console.error("Không tìm thấy phần tử menu-toggle hoặc mobie-nav");
-    }
-});
-
-</script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="../js/main.js"></script>
