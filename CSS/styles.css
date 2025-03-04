@@ -1,0 +1,235 @@
+.app{max-width: 100vw;font-size: 1.6rem;}
+
+/* header */
+.header{
+    height: var(--height-header);
+    padding: 0 30px;
+}
+.header__nav--title h1{
+    font-size: 2.4rem;
+}
+.header__user{
+    display: flex;
+    align-items: center;
+}
+.user__name{
+    font-size: 1.4rem;
+    margin-right: 10px;
+}
+.user__img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: url("") center / cover grey;
+}
+
+/* nav */
+.nav__mobile{border-right: 1px solid var(--color-table-head);}
+.main__nav{
+    /* min-height: 100vh; */
+    height: calc(100vh - var(--height-footer) - var(--height-header));
+    padding: 20px 20px 0;
+}
+.nav__item{
+    display: block;
+    padding: 10px 5px;
+    margin-bottom: 8px;
+}
+.nav__item a{display:block;text-decoration: none;color: #333;}
+.nav__item.active, .nav__item:hover{
+    border-radius: 5px;
+    background-color: var(--color-cyan);
+}
+label, input#nav__mobile{display: none;}
+
+@media (max-width: 740px){
+    .header__user{display: none;}
+    label{display: block;}
+    
+    .nav__mobile{
+        min-height: 100vh;
+        position: absolute;
+        inset: 0;
+        top: var(--height-header);
+        background-color: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: end;
+        z-index: 2;
+    }
+    .main__nav{
+        width: 50%;
+        height: 100%;
+        animation: fadeFromRight ease-in-out 0.3s;
+        will-change: opacity, transform;
+        background-color: var(--color-primary);
+    }
+    input#nav__mobile:checked~.nav__mobile{display: flex;}
+
+    @keyframes fadeFromRight {
+        from{opacity: 0;
+        transform: translateX(90%);}
+        to{opacity: 1;
+        transform: translateX(0);}
+    }
+
+}
+/* main content*/
+/* .main__content{padding-top: 10px;} */
+.content__item{
+    display: none;
+    margin: 0 30px;
+}
+.content__item.active{
+    display: block;
+}
+.content__item h4{
+    font-weight: 600;
+}
+/* home balance */
+.card__item{
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 20px;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
+    background-color: var(--color-card);
+}
+.card__item--title{
+    color: #888;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.card__item--number{
+    font-weight: 600;
+    font-size: 1.9rem;
+}
+/* home recent activity */
+.recent__header, .suggest__header{margin: 30px 0 20px 0;}
+
+.task__card{
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--color-table-head);  
+    cursor: pointer;  
+}
+.task__card--title,
+.task__item--title{font-weight: 500;}
+.task__card--content, .task__item--text{font-size: 1.5rem; font-weight: 300;}
+.task__card--footer{
+    margin: 10px 0 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--color-table-head);
+}
+/* filter task button & filter history button */
+.task__filter--btn{display: flex;justify-content: space-around;}
+.task__filter--btn .btn, .history__filterBtn button{
+    color: var(--color-primary);
+    background-color: transparent;
+    border: 1px solid currentColor;
+}
+.task__filter--btn .btn.active, .history__filterBtn button.active{
+    background-color: var(--color-primary);
+    color:white;
+}
+.task__filter--select{margin: 20px 0;}
+.task__filter--input{
+    outline: none;
+    border: 1px solid var(--color-card);
+    border-radius: 5px;
+    padding: 5px;
+}
+/* task list */
+.task__item{
+    border: 1px solid var(--color-table-head);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+.task__item--text{flex: 3}
+.task__item--number{flex: 1;text-align: end;}
+.task__item--coin{color:var(--color-primary);font-weight: 500;}
+.task__item--time{color: var(--color-danger);margin: 10px;}
+.task__item--footer{display: flex;justify-content: end; gap: 10px;}
+    /* khi thêm class vào task__item: success, processing, over mặc định là màu blue*/
+.task__item.new .btn__task--submit{background-color: var(--color-primary);}
+.task__item.success .btn__task--submit{background-color: var(--color-success);}
+.task__item.processing .btn__task--submit{background-color: var(--color-warn);}
+.task__item.over .btn__task--submit:hover{cursor: default !important;opacity: 1;}
+.task__item.over .btn__task--submit{background-color: var(--color-table-head);}
+/* task processing  */
+.hidden{display: none;}
+/* popup-modal  when button "Nhận thưởng" (btn__task--submit)*/
+@keyframes fadeIn {
+    from{ opacity: 0;}
+    to{ opacity: 1;}
+}
+.app{position: relative;}
+.modal__wrapper{
+    position: fixed;
+    inset: 0;
+    font-size: 1.6rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /*flex*/
+    animation: fadeIn 0.1s linear;
+    will-change: opacity;
+}
+.modal__wrapper.modal__convert,
+.modal__wrapper.modal__award{display: flex;}
+.modal{
+    width: 50%;
+    margin: auto;
+    background-color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 30px;
+}
+.modal__title{font-weight: 600;font-size: 1.8rem;}
+.modal__content{width: 80%;margin: 0 auto;}
+.modal__content--text{margin-top: 10px;}
+.modal__content--coin{
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--color-card);
+    font-weight: 600;
+    font-size: 2rem;
+    padding: 30px;
+    margin: 20px 0;
+}
+.modal__btn--change{width: 50%;}
+.modal__btn--nochange{width: 50%;margin-top: 20px;}
+/* modal convert */
+.modal__content--input{text-align: start;}
+.modal__content--input input{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    outline: none;
+    border: 1px solid var(--color-card);
+    border-radius: 5px;
+}
+.modal__content--input .input__coin{background-color: var(--color-card);}
+/* history card header*/
+.history__card--balance{
+    border:1px solid var(--color-table-head);
+    border-radius: 5px;
+    background-color: var(--color-card);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.card__balance--usdt{text-align: end;}
+/* history button*/
+.history__filterBtn{
+    width: max-content;
+    border: 1px solid var(--color-card);
+    border-radius: 5px;
+    padding: 5px;margin-bottom: 20px;}
+/* history table*/
+
+/* footer */
+.copy-right{
+    height: var(--height-footer);
+    line-height: var(--height-footer);
+    font-size: 1.6rem;
+    text-align: center;
+}

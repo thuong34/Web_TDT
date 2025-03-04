@@ -2,9 +2,9 @@
     --color-table-head: #d9d9d9;
     --color-card: #EFEFEF;
     --color-success: #00FF00;
-    --color-submit: #007BFF;
-    --color-over: #FE2020;
-    --color-processing: #FFD700;
+    --color-primary: #007BFF;
+    --color-danger: #FE2020;
+    --color-warn: #FFD700;
     --color-purple: #DBBFFF;/*mkt*/
     --color-orange: #FCDFBD;/*public*/
     --color-cyan: #E6F7FF;/*app, smart*/
@@ -40,21 +40,33 @@ th, td{
 
 th{background-color: var(--color-table-head); }
 /* button */
-button, .btn{
-    /* display: block; */
+button, .btn, a.btn{
     outline: none;
     border: none;    
     padding: 10px;
     border-radius: 5px;
     color: white;
+    text-align: center;
 }
-button:active, btn:active{background-color: var(--color-over);}
+a.btn{display: inline-block;}
+.btn__success{background-color: var(--color-success);}
+.btn__primary{background-color: var(--color-primary);}
+.btn__warn{background-color: var(--color-warn);}
+.btn__danger{background-color: var(--color-danger);}
+.btn__disable{background-color: var(--color-table-head);}
 
+button:disabled, .btn:disabled{pointer-events: none;}
 button:hover, .btn:hover{
-    cursor: pointer;
     opacity: 0.8;
+    cursor: pointer;
 }
+.btn__disable{opacity: 0.5;cursor: default;pointer-events: none !important;}
+
 .btn__outline{     
     background-color: transparent;
     border: 1px solid currentColor;
 }
+.btn__outline.success{color: var(--color-success);}
+.btn__outline.primary{color: var(--color-primary);}
+.btn__outline.warn{color: var(--color-warn);}
+.btn__outline.danger{color: var(--color-danger);}

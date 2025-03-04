@@ -4,19 +4,15 @@ const registerLink = document.querySelector('.register-link');
 const btnPopup = document.querySelector('.btnlogin-popup');
 const iconClose = document.querySelector('.icon-close');
 const logoutLink = document.querySelector('.logout-link');
-// Lấy form đăng nhập & đăng ký
 const loginForm = document.querySelector('.form-box.login form');
 const registerForm = document.querySelector('.form-box.register form');
 
-// Xử lý chuyển đổi giữa đăng nhập & đăng ký
 registerLink.addEventListener('click', () => {
     wrapper.classList.add('active');
 });
 loginLink.addEventListener('click', () => {
     wrapper.classList.remove('active');
 });
-
-// Mở form đăng nhập
 btnPopup.addEventListener('click', () => {
     wrapper.classList.add('active-popup');
     if (window.innerWidth <= 768) {
@@ -24,7 +20,6 @@ btnPopup.addEventListener('click', () => {
     }
 });
 
-// Đóng form đăng nhập
 iconClose.addEventListener('click', () => {
     wrapper.classList.remove('active-popup');
 });
@@ -45,9 +40,8 @@ loginForm.addEventListener('submit', function (e) {
         showError(passwordInput, 'Mật khẩu phải có ít nhất 6 ký tự!');
         return;
     }
-    // Chuyển hướng sau khi đăng nhập
     setTimeout(() => {
-        window.location.href = "../HTML/Layout2.html";
+        window.location.href = "../HTML/connect_wallet.html";
     }, 500);
 });
 
@@ -94,17 +88,11 @@ function showError(inputElement, message) {
     alert(message);
     inputElement.focus();
 }
-//ham quay lai layout3
+//Hàm kết nối connect_wallet
+function connect() {
+    window.location.href = "../HTML/metamask-connect.html";
+}
+//ham quay lai install-metamask
 function goBack() {
     window.history.back();
 }
-
-//connect Metamask
-function connect() {
-    window.location.href = "../HTML/Layout4.html";
-}
-//connnect trang chuchu
-function connectMetaMask() {
-    window.location.href = "../HTML/Layout5.html";
-}
-

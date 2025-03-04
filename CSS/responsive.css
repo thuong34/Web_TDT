@@ -2,7 +2,6 @@
     width: 100%;
     display: block;
     padding: 0;
-    
 }
 
 .grid.wide {
@@ -30,6 +29,10 @@
 .row.no-gutters .col {
     padding-left: 0;
     padding-right: 0;
+}
+
+.c-0 {
+    display: none;
 }
 
 .c-1 {
