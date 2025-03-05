@@ -61,94 +61,61 @@ function renderTasks(todos){
         </div>`
     }).join('')
 
-    // Lắng nghe sự kiện click vào danh sách nhiệm vụ mới
-    newTaskList.addEventListener("click", function (event) {
+    document.querySelector(".task__newList").addEventListener("click", function (event) {
         if (event.target.classList.contains("btn__task--submit")) {
-            const taskItem = event.target.closest(".task__item.new");
-
-            if (taskItem) {
-                event.target.innerText = "Xác nhận hoàn thành";
-
-                // Cập nhật class để phân biệt
-                taskItem.classList.remove("new");
-                taskItem.classList.add("processing");
-                taskItem.querySelector('.btn__task--delete').classList.remove('hidden')
-
-                // Thêm vào danh sách nhiệm vụ đang thực hiện
-                processingTaskList.prepend(taskItem);
-            }
-        }
-    }); 
-    document.querySelector('.task__newList').addEventListener('click', function (e) {
-        if (e.target.classList.contains('btn__task--submit')) {
-            let taskItem = e.target.closest('.task__item');
-            let timeElement = taskItem.querySelector('.task__item--time');
+            let taskItem = event.target.closest(".task__item");
+            let timeElement = taskItem.querySelector(".task__item--time");
             let btnContainer = taskItem.querySelector(".task__item--number");
-            let coinElement = taskItem.querySelector(".task__item--coin"); 
+            let coinElement = taskItem.querySelector(".task__item--coin");
     
-            let timeStr = timeElement.innerText.trim();
-            let [hours, minutes, seconds] = timeStr.split(":").map(Number);
+            let [hours, minutes, seconds] = timeElement.innerText.trim().split(":").map(Number);
             let totalTime = hours * 3600 + minutes * 60 + seconds;
     
-            e.target.innerText = "Xác nhận hoàn thành";
-            taskItem.classList.add("processing");
+            event.target.innerText = "Xác nhận hoàn thành";
+            taskItem.classList.replace("new", "processing");
+            taskItem.querySelector(".btn__task--delete").classList.remove("hidden");
+            document.querySelector(".task__processingList").prepend(taskItem);
     
             let countdown = setInterval(() => {
                 if (totalTime <= 0) {
                     clearInterval(countdown);
-                    timeElement.innerText = "00:00:00";
-                    taskItem.classList.remove("processing");
-                    taskItem.classList.add("over");
-    
-                    taskItem.querySelector(".btn__task--submit").innerText = "Quá hạn";
-                    btnContainer.innerHTML = `
-                        ${coinElement.outerHTML} 
-                        <div class="task__item--time">00:00:00</div>
-                    `;
-                    processingTaskList.appendChild(taskItem);
+                    taskItem.classList.replace("processing", "over");
+                    event.target.innerText = "Quá hạn";
+                    btnContainer.innerHTML = `${coinElement.outerHTML} <div class="task__item--time">00:00:00</div>`;
                     return;
                 }
                 totalTime--;
                 let h = Math.floor(totalTime / 3600);
                 let m = Math.floor((totalTime % 3600) / 60);
                 let s = totalTime % 60;
-    
-                timeElement.innerText = `${h}:${m < 10 ? "0" : ""}${m}:${s < 10 ? "0" : ""}${s}`;
+                timeElement.innerText = `${h}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
             }, 1000);
-    
-            // Lưu bộ đếm vào taskItem
+            
             taskItem.countdown = countdown;
         }
     });
-    // Xác nhận hoàn thành
-    document.querySelector('.task__processingList').addEventListener("click", function (event) {
+    
+    document.querySelector(".task__processingList").addEventListener("click", function (event) {
         if (event.target.innerText === "Xác nhận hoàn thành") {
             let taskItem = event.target.closest(".task__item.processing");
             if (!taskItem) return;
-            // Dừng đếm ngược
             clearInterval(taskItem.countdown);
-            // Chuyển trạng thái hoàn thành
-            taskItem.classList.remove("processing");
-            taskItem.classList.add("completed", "success");
-            let timeElement = taskItem.querySelector(".task__item--time");
-            // Cập nhật nút "Xác nhận hoàn thành" thành "Nhận thưởng"
+            taskItem.classList.replace("processing", "completed");
+            taskItem.classList.add("success");
             event.target.innerText = "Nhận thưởng";
             event.target.style.backgroundColor = "#00FF00";
             event.target.style.color = "white";
         }
     });
-    // Xóa nhiệm vụ khỏi giao diện
+    
     document.addEventListener("click", function (event) {
         if (event.target.classList.contains("btn__task--delete")) {
-            let taskElement = event.target.closest(".task__item");
-            if (taskElement) {
-                taskElement.remove(); 
-            }
+            event.target.closest(".task__item")?.remove();
         }
-    }); 
-    //chuyen huong nut quay lailai
+    });
+    
     document.querySelector(".modal__btn--back").addEventListener("click", function () {
-        window.location.href = "../html/index.html"; 
+        window.location.href = "../html/index.html";
     });
 }    
 function start(){
