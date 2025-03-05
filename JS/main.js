@@ -3,9 +3,9 @@ const contentItems = document.querySelectorAll('.content__item')
 const navTitle = document.querySelector('.header__nav--title h1')
 
 // xóa class active
-function removeActive(arrItems) {
-    for (let i of arrItems) {
-        if (i.classList.contains('active')) {
+function removeActive(arrItems){
+    for(let i of arrItems){
+        if(i.classList.contains('active')){
             i.classList.remove('active')
             break;
         }
@@ -13,8 +13,8 @@ function removeActive(arrItems) {
 }
 
 // chuyển nav main khi click
-navItems.forEach((item, index) => {
-    item.addEventListener('click', () => {
+navItems.forEach((item, index)=>{
+    item.addEventListener('click',()=>{
         removeActive(navItems)
         removeActive(contentItems)
 
@@ -31,31 +31,31 @@ const modalConvert = modals[0]
 const modalAward = modals[1]
 
 // mở modal convert
-btnConvert.addEventListener('click', (e) => {
+btnConvert.addEventListener('click',(e)=>{
     modalConvert.classList.add("modal__convert")
     const formConvert = modalConvert.querySelector('form.modal__content')
     let inputUsdt = formConvert.querySelector('[name="input__usdt"]')
     let inputCoin = formConvert.querySelector('[name="input__coin"]')
-
-    formConvert.onsubmit = (e) => {
+    
+    formConvert.onsubmit = (e)=>{
         e.preventDefault()
-        inputCoin.value = (Number(inputUsdt.value.trim()) * 100).toString()
+        inputCoin.value = (Number(inputUsdt.value.trim())*100).toString()
         inputUsdt.focus()
-        inputUsdt.value = ""
+        inputUsdt.value=""
     }
     // dong modal khi click button "hủy"
-    closeModal(modalConvert, 'modal__convert', formConvert)
+    closeModal(modalConvert,'modal__convert',formConvert)
     // dong modal khi click vao vung ngoai modal??
-    modalConvert.onclick = (e) => {
-        if (!e.target.closest('.modal')) {
+    modalConvert.onclick = (e)=>{
+        if(!e.target.closest('.modal')){
             modalConvert.classList.remove('modal__convert')
         }
     }
 })
 // mở modal nhận thưởng
-document.querySelector('.task__processingList').addEventListener('click', (e) => {
+document.querySelector('.task__processingList').addEventListener('click',(e)=>{
     const btnTaskSubmit = e.target.closest('.task__item.success .btn__task--submit')
-    if (btnTaskSubmit) {
+    if(btnTaskSubmit){
         modalAward.classList.add("modal__award")
         // lấy số coin ở task--item
         let taskItem = btnTaskSubmit.closest('.task__item.success')
@@ -63,85 +63,89 @@ document.querySelector('.task__processingList').addEventListener('click', (e) =>
         // gán vào content__coin--value ở modal
         let coinModal = modalAward.querySelector('.content__coin--value')
         coinModal.innerHTML = coins
-
+        
         // dong modal khi click vao button / vung ngoai modal
         const formAward = modalAward.querySelector('.modal__btn')
-        closeModal(modalAward, 'modal__award', formAward)
-        modalAward.onclick = (e) => {
-            if (!e.target.closest('.modal')) {
+        closeModal(modalAward,'modal__award',formAward)
+        modalAward.onclick = (e)=>{
+            if(!e.target.closest('.modal')){
                 modalAward.classList.remove('modal__award')
             }
         }
+        // disable btn lại để tránh nhận coin nhiều lần:)))
+        btnTaskSubmit.classList.add('btn__disable')
     }
 })
-
+document.querySelector(".modal__btn--back").addEventListener("click", function () {
+    window.location.href = "../html/index.html";
+});
 // dong modal
-function closeModal(modal, modalClass, modalForm) {
+function closeModal(modal,modalClass,modalForm){
     const btnDestroy = modalForm.querySelector('.modal__btn--nochange')
-    btnDestroy.addEventListener('click', () => {
+    btnDestroy.addEventListener('click',()=>{
         modal.classList.remove(modalClass)
     })
 }
 
 //dsach nhiệm vụ: bấm button chuyển task list
-const toggleTaskList = (showNew) => {
-    document.querySelector('.task__newList').classList.toggle('hidden', !showNew)
-    document.querySelector('.task__processingList').classList.toggle('hidden', showNew)
+const toggleTaskList = (showNew)=>{
+    document.querySelector('.task__newList').classList.toggle('hidden',!showNew)
+    document.querySelector('.task__processingList').classList.toggle('hidden',showNew)
 }
 // có thể dùng removeActive()
-function toggleBtnOutline(btnCurrent, btnOther, isNotOutline) {
-    btnCurrent.classList.toggle('active', isNotOutline)
-    btnOther.classList.toggle('active', !isNotOutline)
-
+function toggleBtnOutline(btnCurrent,btnOther,isNotOutline){
+    btnCurrent.classList.toggle('active',isNotOutline)
+    btnOther.classList.toggle('active',!isNotOutline)
+    
 }
 const btnFilterNew = document.querySelector('.btn__filter--new')
 const btnFilterCurrent = document.querySelector('.btn__filter--current')
-btnFilterNew.addEventListener('click', function () {
+btnFilterNew.addEventListener('click',function(){
     toggleTaskList(true)
-    toggleBtnOutline(this, btnFilterCurrent, true) //###
+    toggleBtnOutline(this,btnFilterCurrent,true) //###
 })
-btnFilterCurrent.addEventListener('click', function () {
+btnFilterCurrent.addEventListener('click',function(){
     toggleTaskList(false)
-    toggleBtnOutline(this, btnFilterNew, true)
+    toggleBtnOutline(this,btnFilterNew,true)
 })
 // lọc nhiệm vụ bằng select điểm thưởng, thời gian
 let selectTaskInput = document.querySelector('.task__filter--input')
-selectTaskInput.onchange = (e) => {
+selectTaskInput.onchange = (e)=>{
     const sortBy = e.target.value
     // lấy newList ko có .hidden hoặc lấy processingList ko có .hidden
     const taskListContainer = document.querySelector('.task__newList:not(.hidden), .task__processingList:not(.hidden)')
     const tasks = Array.from(taskListContainer.querySelectorAll('.col'))
 
-    tasks.sort((a, b) => {
+    tasks.sort((a, b)=>{
         //doi tgian ra giay
-        const timeToSeconds = (timeStr) => {
+        const timeToSeconds = (timeStr)=>{
             const [hours, minutes, seconds] = timeStr.split(":").map(Number)
-            return hours * 3600 + minutes * 60 + seconds
+            return hours*3600 + minutes*60 + seconds
         }
 
-        const aValue =
-            sortBy === "1" ? timeToSeconds(a.querySelector('.task__item--time').innerText) : Number(a.querySelector('.task__item--coin span').innerText)
-        const bValue =
-            sortBy === "1" ? timeToSeconds(b.querySelector('.task__item--time').innerText) : Number(b.querySelector('.task__item--coin span').innerText)
+        const aValue = 
+        sortBy === "1" ? timeToSeconds(a.querySelector('.task__item--time').innerText) : Number(a.querySelector('.task__item--coin span').innerText)
+        const bValue = 
+        sortBy === "1" ? timeToSeconds(b.querySelector('.task__item--time').innerText) : Number(b.querySelector('.task__item--coin span').innerText)
 
         return aValue > bValue ? 1 : -1 //nếu a>b thì đổi vị trí
     })
 
     taskListContainer.innerHTML = "" //xóa để tránh bị trùng lặp dl
-    tasks.forEach((task) => {
+    tasks.forEach((task)=>{
         taskListContainer.appendChild(task)
     })
 }
 // history button
 const btnFilterHistorys = document.querySelectorAll('.history__filterBtn button')
-btnFilterHistorys.forEach(btn => {
-    btn.onclick = () => {
+btnFilterHistorys.forEach(btn=>{
+    btn.onclick = ()=>{
         document.querySelector('.history__filterBtn button.active').classList.remove('active')
         btn.classList.add('active')
     }
 })
-// Note: chưa đổi lại coin--> usdt
-// chưa chuyển lại trang chủ khi bấm button ở modal
+
+
 //logout
 document.addEventListener("DOMContentLoaded", () => {
     const logoutLink = document.querySelector('.logout-link');
@@ -163,8 +167,31 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-//xoa tk
+// Xử lý xóa tài khoản
+document.addEventListener("DOMContentLoaded", () => {
+    const deleteLink = document.querySelector('.delete-link');
+    const deletePopup = document.getElementById('delete-popup');
+    const confirmDelete = document.getElementById('confirm-delete');
+    const cancelDelete = document.getElementById('cancel-delete');
 
+    if (deleteLink) {
+        deleteLink.addEventListener('click', () => {
+            deletePopup.style.display = "flex";
+        });
+
+        confirmDelete.addEventListener('click', () => {
+            alert("Đã xóa thành công."); 
+            deletePopup.style.display = "none";
+            window.location.href = "../HTML/auth.html";
+        });
+
+        cancelDelete.addEventListener('click', () => {
+            deletePopup.style.display = "none";
+        });
+    }
+});
+
+//xoa nhiem vu
 function handleDeleteTask(event) {
     if (event.target.classList.contains('btn__task--delete')) {
         let btnDelete = event.target
