@@ -53,3 +53,22 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "../html/index.html";
     });
 });
+//xem tat ca index
+document.addEventListener("DOMContentLoaded", function () {
+    const viewAllTasksBtn = document.getElementById("viewAllTasks");
+    const homeContent = document.querySelector(".content__home");
+    const taskListContent = document.querySelector(".content__task");
+
+    if (viewAllTasksBtn && homeContent && taskListContent) {
+        viewAllTasksBtn.addEventListener("click", function () {
+            // Ẩn trang chủ
+            homeContent.classList.remove("active");
+
+            // Hiển thị danh sách nhiệm vụ
+            taskListContent.classList.add("active");
+
+            // Cuộn lên đầu trang (tùy chọn)
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+});
