@@ -20,7 +20,7 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: url("") center / cover grey;
+    background: url("../img/circle-user-regular.svg") center / contain ;
 }
 
 /* nav */
@@ -45,7 +45,7 @@ label, input#nav__mobile{display: none;}
 @media (max-width: 740px){
     .header__user{display: none;}
     label{display: block;}
-    
+    label img{cursor: pointer;}
     .nav__mobile{
         min-height: 100vh;
         position: absolute;
@@ -61,7 +61,7 @@ label, input#nav__mobile{display: none;}
         height: 100%;
         animation: fadeFromRight ease-in-out 0.3s;
         will-change: opacity, transform;
-        background-color: var(--color-primary);
+        background-color: #fff;
     }
     input#nav__mobile:checked~.nav__mobile{display: flex;}
 
@@ -131,8 +131,8 @@ label, input#nav__mobile{display: none;}
     background-color: var(--color-primary);
     color:white;
 }
-.task__filter--select{margin: 20px 0;}
-.task__filter--input{
+.task__sort--select{margin: 20px 0;}
+.task__sort--input{
     outline: none;
     border: 1px solid var(--color-card);
     border-radius: 5px;
@@ -185,7 +185,7 @@ label, input#nav__mobile{display: none;}
     padding: 30px;
 }
 .modal__title{font-weight: 600;font-size: 1.8rem;}
-.modal__content{width: 80%;margin: 0 auto;}
+.modal__content{width: 80%;margin: 10px auto;}
 .modal__content--text{margin-top: 10px;}
 .modal__content--coin{
     width: 100%;
@@ -208,7 +208,7 @@ label, input#nav__mobile{display: none;}
     border: 1px solid var(--color-card);
     border-radius: 5px;
 }
-.modal__content--input .input__coin{background-color: var(--color-card);}
+.modal__content--input input:disabled{background-color: var(--color-card);}
 /* history card header*/
 .history__card--balance{
     border:1px solid var(--color-table-head);

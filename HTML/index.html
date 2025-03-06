@@ -24,7 +24,7 @@
                     <div class="user__name">User Name</div>
                     <div class="user__img"></div>
                 </div>
-                <label for="nav__mobile"><i>=</i></label>
+                <label for="nav__mobile"><img src="img/svg/bars-solid.svg" alt="bars" style="width: 20px;"></label>
             </div>
         </header>
 
@@ -44,9 +44,9 @@
                 <div class="col l-9 m-9 c-12">
                     <div class="main__content">
                         <!-- home -->
-                        <div class="content__item content__home active ">
+                        <div class="content__item content__home active">
 
-                            <div class="home__balance ">
+                            <div class="home__balance">
                                 <h4 class="home__balance--title">Số dư tài khoản</h4>
                                 <div class="home__balance--card row no-gutters">
 
@@ -104,31 +104,6 @@
                                     <button id="viewAllTasks" class="btn__suggest--read btn__outline primary">Xem tất cả</button>
                                 </div>
                                 <div class="suggest__task row no-gutters">
-                                    <div class=" col l-5 m-5 c-12">
-
-                                        <div class="task__card">
-                                            <div class="task__card--title">Kiểm tra smart contract</div>
-                                            <div class="task__card--content">Kiểm tra và báo cáo lỗi của dự án ABC</div>
-                                            <div class="task__card--footer f-between">
-                                                <div class="card__coin">500 Coin</div>
-                                                <div class="card__time">01:45:30</div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="col l-5 l-o-2 m-5 m-o-2 c-12">
-
-                                        <div class="task__card">
-                                            <div class="task__card--title">Tham gia AMA</div>
-                                            <div class="task__card--content">Tham gia và cài đặt câu hỏi cho dự án XYZ
-                                            </div>
-                                            <div class="task__card--footer f-between">
-                                                <div class="card__coin">300 Coin</div>
-                                                <div class="card__time">03:25:10</div>
-                                            </div>
-                                        </div>
-
-                                    </div>
                                 </div>
                             </div>
 
@@ -142,10 +117,10 @@
                                 <div class="btn__filter--current btn">Đang thực hiện</div>
                             </div>
 
-                            <!-- select filter -->
-                            <div class="task__filter--select f-between">
-                                <div class="task__filter--date">Nhiệm vụ ngày 25/2/2025</div>
-                                <select class="task__filter--input">
+                            <!-- select sort -->
+                            <div class="task__sort--select f-between">
+                                <div class="task__sort--date">Nhiệm vụ ngày 25/2/2025</div>
+                                <select class="task__sort--input">
                                     <option value="1">Thời gian</option>
                                     <option value="2">Điểm thưởng</option>
                                 </select>
@@ -160,7 +135,7 @@
                         </div>
 
                         <!-- history -->
-                        <div class="content__item content__history ">
+                        <div class="content__item content__history">
                             <div class="grid">
                                 <div class="row no-guttesr">
                                     <!-- history: 2 card usdt, coin -->
@@ -181,9 +156,12 @@
                                     <div class="col l-12 m-12 c-12">
                                         <div class="history__filterBtn">
                                             <span>Lọc theo: </span>
-                                            <button class="btn__filterAll active" type="button">Tất cả</button>
-                                            <button class="btn__filterConvert" type="button">Quy đổi</button>
-                                            <button class="btn__filterTask" type="button">Nhiệm vụ</button>
+                                            <button class="btn__filterAll active" type="button" data-filter="all">Tất
+                                                cả</button>
+                                            <button class="btn__filterConvert" type="button" data-filter="convert">Quy
+                                                đổi</button>
+                                            <button class="btn__filterTask" type="button" data-filter="task">Nhiệm
+                                                vụ</button>
                                         </div>
                                     </div>
                                     <!-- history table -->
@@ -197,20 +175,14 @@
                                                     <th>Trạng thái</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Quy đổi USDT -> Coin</td>
-                                                    <td>1000 USDT</td>
-                                                    <td>27/02/2025 - 10:10</td>
-                                                    <td>Thành công</td>
-                                                </tr>
+                                            <tbody id="transacionTable">
+
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <!-- setting account -->
                         <div class="content__item content__setting">
                             <div class="wallet-info">
@@ -334,8 +306,8 @@
         </footer>
     </div>
 </body>
-<script src="../js/testAPI.js"></script>
-<script src="../js/main.js"></script>
+<script type="module" src="../js/testAPI.js"></script>
+<script typy="module" src="../js/main.js"></script>
 <script src="../js/metamask-connect.js"></script>
 
 </html>

@@ -44,6 +44,10 @@ function renderTasks(todos) {
 
     newTaskList.addEventListener("click", (event) => handleAddTask(event, processingTaskList));
     processingTaskList.addEventListener("click", handleProcessingTask);
+    // nhiệm vụ đề xuất
+    renderSuggestTasks(newTaskList)
+    // hiển thị tất cả lịch sử giao dịch
+    renderHistoryTransactions()
 }
 
 // Hàm tạo HTML cho nhiệm vụ
@@ -145,4 +149,74 @@ function handleProcessingTask(event) {
         taskItem.classList.replace("processing", "success");
         event.target.innerText = "Nhận thưởng";
     }
+}
+
+// nhiệm vụ đề xuất
+function renderSuggestTasks(newTaskList) {
+    const taskContainer = document.querySelector('.suggest__task')
+    if (!taskContainer) return
+    taskContainer.innerHTML = createSuggestTaskHTML(newTaskList)
+}
+
+function createSuggestTaskHTML(newTaskList) {
+    if (!newTaskList) return ""
+
+    const taskItems = Array.from(newTaskList.querySelectorAll('.task__item')).slice(0, 2)
+    if (!taskItems) return
+
+    return taskItems.map((taskItem, index) => {
+        let id = taskItem.dataset.id || "NA"
+        let time = taskItem.dataset.time || "Not found"
+        let text = taskItem.querySelector('.task__item--text')?.innerText || "Nothing"
+        let coin = taskItem.querySelector('.task__item--coin')?.innerText || "Not found"
+
+        return `<div class="col l-5 ${index === 1 ? "l-o-2 m-o-2" : ""} m-5 c-12">
+                    <div class="task__card">
+                        <div class="task__card--title">Nhiệm vụ ${id}:</div>
+                        <div class="task__card--content">${text}</div>
+                        <div class="task__card--footer f-between">
+                            <div class="card__coin">${coin}</div>
+                            <div class="card__time">${time}</div>
+                        </div>
+                    </div>
+                </div>`
+    }).join("")
+}
+
+// lịch sử giao dịch
+const transacionsData = [
+    { id: 1, type: "convert", details: "Quy đổi USDT -> Coin", amount: "10 USDT -> 1000 Coin", time: "27/02/2025 - 10:10", status: "Thành công" },
+    { id: 2, type: "convert", details: "Quy đổi Coin -> USDT", amount: "100 Coin -> 1 USDT", time: "8/03/2025 - 00:40", status: "Thành công" },
+    { id: 3, type: "task", details: "Nhận thưởng", amount: "+50 Coin", time: "8/03/2025 - 07:00", status: "Thành công" }
+];
+
+const tableBody = document.getElementById("transacionTable");
+const btnFilterHistorys = document.querySelectorAll('.history__filterBtn button')
+
+btnFilterHistorys.forEach(btn => {
+    btn.onclick = () => {
+        document.querySelector('.history__filterBtn button.active').classList.remove('active')
+        btn.classList.add('active')
+        
+        const filterType = btn.getAttribute("data-filter")
+        renderHistoryTransactions(filterType)
+    }
+})
+
+function renderHistoryTransactions(filterType = "all"){
+    tableBody.innerHTML = ""
+
+    const filteredTransacion = transacionsData.filter(transacion=>{
+        return filterType === "all" || transacion.type === filterType
+    })
+
+    filteredTransacion.forEach(transacion=>{
+        const row = `<tr>
+            <td>${transacion.details}</td>
+            <td>${transacion.amount}</td>
+            <td>${transacion.time}</td>
+            <td>${transacion.status}</td>
+        </tr>`
+        tableBody.innerHTML += row
+    })
 }
