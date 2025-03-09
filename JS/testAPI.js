@@ -1,4 +1,4 @@
-const todosAPI = "https://dummyjson.com/todos";
+const todosAPI = "https://dummyjson.com/todos/1";
 
 start();
 
@@ -27,16 +27,20 @@ function renderTasks(todos) {
     const fakeUsers = [{
         id: 1,
         name: "Hai Nam",
+        balance: {
+            usdt: 0,
+            coin: 0
+        },
         task_status: [
-            { task_id: 10, todo: "Memorize a classic", time: "00:05:05", coin: 90, status: "over" },
-            { task_id: 12, todo: "Do something nice classic", time: "01:03:12", coin: 213, status: "success" }
+            { task_id: 10, todo: "Memorize a classic", time: "00:05:05", coin: 90, status: "over", accepted_at:"2025-03-08T07:23:02.741Z" },
+            { task_id: 12, todo: "Do something nice classic", time: "01:03:12", coin: 213, status: "new", accepted_at:"2025-03-08T07:10:02.741Z" }
         ]
     }];
 
     const fakeProcessingTasks = fakeUsers[0]["task_status"];
 
     newTaskList.innerHTML = fakeNewTasks.map(task => createTaskHTML(task, "new")).join("");
-    processingTaskList.innerHTML = fakeProcessingTasks.map(task => createTaskHTML(task, task.status)).join("");
+    processingTaskList.innerHTML = fakeProcessingTasks.map(task => createTaskHTML(task, checkTaskStatus(task))).join("");
 
     document.querySelectorAll(".task__item.processing").forEach(taskItem => {
         startCountdown(taskItem);
@@ -51,7 +55,7 @@ function renderTasks(todos) {
 }
 
 // Hàm tạo HTML cho nhiệm vụ
-function createTaskHTML(task, status) {
+export function createTaskHTML(task, status) {
     let textBtn = {
         "new": "Nhận nhiệm vụ",
         "processing": "Xác nhận hoàn thành",
@@ -77,13 +81,27 @@ function createTaskHTML(task, status) {
             </div>
         </div>`;
 }
-
+// time to seconds
+function toSeconds(timestr){
+    let [hours, minutes, seconds] = timestr.split(":").map(Number);
+    return hours * 3600 + minutes * 60 + seconds;
+}
+// check status task
+function checkTaskStatus(task) {
+    let now = new Date();
+    let acceptedAt = new Date(task.accepted_at);
+    let expiresAt = new Date(acceptedAt.getTime() + toSeconds(task.time) * 1000);
+    return now > expiresAt ? "over" : "processing";
+}
 // Xử lý khi bấm "Nhận nhiệm vụ"
 function handleAddTask(event, processingTaskList) {
     if (!event.target.classList.contains("btn__task--submit")) return;
 
     const taskItem = event.target.closest(".task__item.new");
     if (!taskItem) return;
+    // lấy thời gian thực
+    let acceptedAt = new Date().toISOString();
+    taskItem.dataset.accepted = acceptedAt;
 
     event.target.innerText = "Xác nhận hoàn thành";
     taskItem.classList.replace("new", "processing");
@@ -101,38 +119,32 @@ function handleAddTask(event, processingTaskList) {
 }
 
 //Hàm đếm ngược (chỉ chạy với nhiệm vụ "processing")
-function startCountdown(taskItem) {
-    let timeElemnt = taskItem.querySelector(".task__item--time");
-    if (!timeElemnt) return;
+function startCountdown(taskItem){
+    let acceptedAt = new Date(taskItem.dataset.accepted)
+    let duration = toSeconds(taskItem.dataset.time)
+    let expiresAt = new Date(acceptedAt.getTime() + duration * 1000)
 
-    let [hours, minutes, seconds] = timeElemnt.innerText.split(":").map(Number);
-    let totalSeconds = hours * 3600 + minutes * 60 + seconds;
+    function updateTimer(){
+        if(!taskItem.classList.contains('processing') ) return
 
-    if (!taskItem.classList.contains("processing") || totalSeconds <= 0) return;
+        let now = new Date()
+        let remaining = Math.max(0, Math.floor((expiresAt - now) / 1000))
 
-    let countDown = setInterval(() => {
-        if (totalSeconds <= 0) {
-            clearInterval(countDown);
-            timeElemnt.innerText = "00:00:00";
-
-            // Khi hết giờ mà chưa hoàn thành, chuyển thành "Quá hạn"
-            taskItem.classList.replace("processing", "over");
-            let btn = taskItem.querySelector(".btn__task--submit");
-            if (btn) {
-                btn.innerText = "Quá hạn";
-            }
-            return;
+        if(remaining <= 0){
+            taskItem.classList.replace('processing','over')
+            taskItem.querySelector('.task__item--time').innerText = "00:00:00"
+            taskItem.querySelector('.btn__task--submit').innerText = "Quá hạn"
+            return
+        }else{
+            taskItem.dataset.timerId = requestAnimationFrame(updateTimer)
         }
+        let h = Math.floor(remaining / 3600);
+        let m = Math.floor((remaining % 3600) / 60);
+        let s = remaining % 60;
 
-        totalSeconds--;
-        let h = Math.floor(totalSeconds / 3600);
-        let m = Math.floor((totalSeconds % 3600) / 60);
-        let s = totalSeconds % 60;
-
-        timeElemnt.innerText = `${h < 10 ? "0" : ""}${h}:${m < 10 ? "0" : ""}${m}:${s < 10 ? "0" : ""}${s}`;
-    }, 1000);
-
-    taskItem.dataset.timerId = countDown;
+        taskItem.querySelector('.task__item--time').innerText = `${h < 10 ? "0" : ""}${h}:${m < 10 ? "0" : ""}${m}:${s < 10 ? "0" : ""}${s}`
+    }
+    updateTimer()
 }
 
 // Xử lý khi bấm vào nhiệm vụ trong "Đang thực hiện"
@@ -145,7 +157,7 @@ function handleProcessingTask(event) {
             taskItem.remove();
         }
     } else if (event.target.classList.contains("btn__task--submit") && taskItem.classList.contains("processing")) {
-        clearInterval(taskItem.dataset.timerId);
+        cancelAnimationFrame(taskItem.dataset.timerId);
         taskItem.classList.replace("processing", "success");
         event.target.innerText = "Nhận thưởng";
     }
