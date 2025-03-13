@@ -3,9 +3,8 @@ const loginLink = document.querySelector('.login-link');
 const registerLink = document.querySelector('.register-link');
 const btnPopup = document.querySelector('.btnlogin-popup');
 const iconClose = document.querySelector('.icon-close');
-const logoutLink = document.querySelector('.logout-link');
-const loginForm = document.querySelector('.form-box.login form');
-const registerForm = document.querySelector('.form-box.register form');
+const loginForm = document.querySelector('#login-form');
+const registerForm = document.querySelector('#register-form');
 
 registerLink.addEventListener('click', () => {
     wrapper.classList.add('active');
@@ -15,66 +14,88 @@ loginLink.addEventListener('click', () => {
 });
 btnPopup.addEventListener('click', () => {
     wrapper.classList.add('active-popup');
-    if (window.innerWidth <= 768) {
-        navigation.classList.remove('active');
-    }
 });
-
 iconClose.addEventListener('click', () => {
     wrapper.classList.remove('active-popup');
 });
- 
-//  Validate Đăng nhập
-loginForm.addEventListener('submit', function (e) {
+
+// 🔹 Gửi yêu cầu API Đăng nhập (Dùng API test từ Reqres)
+loginForm.addEventListener('submit', async function (e) {
     e.preventDefault();
-    let emailInput = loginForm.querySelector('input[type="email"]');
-    let passwordInput = loginForm.querySelector('input[type="password"]');
-    let email = emailInput.value.trim();
-    let password = passwordInput.value.trim();
+    let email = loginForm.querySelector('input[name="email"]').value.trim();
+    let password = loginForm.querySelector('input[name="password"]').value.trim();
 
     if (!validateEmail(email)) {
-        showError(emailInput, 'Email không hợp lệ!');
+        showError('Email không hợp lệ!');
         return;
     }
     if (password.length < 6) {
-        showError(passwordInput, 'Mật khẩu phải có ít nhất 6 ký tự!');
+        showError('Mật khẩu phải có ít nhất 6 ký tự!');
         return;
     }
-    setTimeout(() => {
-        window.location.href = "../HTML/connect_wallet.html";
-    }, 500);
+
+    try {
+        let response = await fetch("https://reqres.in/api/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
+        let data = await response.json();
+
+        if (response.ok) {
+            localStorage.setItem("token", data.token);
+            alert("Đăng nhập thành công!");
+            window.location.href = "../HTML/connect_wallet.html";
+        } else {
+            showError(data.error || "Đăng nhập thất bại!");
+        }
+    } catch (error) {
+        showError("Lỗi kết nối API!");
+    }
 });
 
-//  Validate Đăng ký
-registerForm.addEventListener('submit', function (e) {
+// 🔹 Gửi yêu cầu API Đăng ký (Dùng API test từ Reqres)
+registerForm.addEventListener('submit', async function (e) {
     e.preventDefault();
-    let usernameInput = registerForm.querySelector('input[type="text"]');
-    let emailInput = registerForm.querySelector('input[type="email"]');
-    let passwordInput = registerForm.querySelector('input[type="password"]');
-    let checkboxInput = registerForm.querySelector('input[type="checkbox"]');
-
-    let username = usernameInput.value.trim();
-    let email = emailInput.value.trim();
-    let password = passwordInput.value.trim();
+    let username = registerForm.querySelector('input[name="username"]').value.trim();
+    let email = registerForm.querySelector('input[name="email"]').value.trim();
+    let password = registerForm.querySelector('input[name="password"]').value.trim();
+    let checkbox = registerForm.querySelector('input[type="checkbox"]').checked;
 
     if (username.length < 3) {
-        showError(usernameInput, 'Tên người dùng phải có ít nhất 3 ký tự!');
+        showError('Tên người dùng phải có ít nhất 3 ký tự!');
         return;
     }
     if (!validateEmail(email)) {
-        showError(emailInput, 'Email không hợp lệ!');
+        showError('Email không hợp lệ!');
         return;
     }
     if (password.length < 6) {
-        showError(passwordInput, 'Mật khẩu phải có ít nhất 6 ký tự!');
+        showError('Mật khẩu phải có ít nhất 6 ký tự!');
         return;
     }
-    if (!checkboxInput.checked) {
-        alert('Bạn phải đồng ý với điều khoản và điều kiện!');
+    if (!checkbox) {
+        showError('Bạn phải đồng ý với điều khoản và điều kiện!');
         return;
     }
-    wrapper.classList.remove('active');
-    this.submit();
+
+    try {
+        let response = await fetch("https://reqres.in/api/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
+        let data = await response.json();
+
+        if (response.ok) {
+            alert("Đăng ký thành công! Vui lòng đăng nhập.");
+            wrapper.classList.remove('active');
+        } else {
+            showError(data.error || "Đăng ký thất bại!");
+        }
+    } catch (error) {
+        showError("Lỗi kết nối API!");
+    }
 });
 
 //  Hàm kiểm tra email hợp lệ
@@ -84,9 +105,8 @@ function validateEmail(email) {
 }
 
 //  Hàm hiển thị lỗi
-function showError(inputElement, message) {
+function showError(message) {
     alert(message);
-    inputElement.focus();
 }
 //Hàm kết nối connect_wallet
 function connect() {
