@@ -1,0 +1,11 @@
+{
+  "name": "json-api",
+  "version": "1.0.0",
+  "description": "JSON API without coding",
+  "scripts": {
+    "start": "json-server --watch db.json"
+  },
+  "dependencies": {
+    "json-server": "^0.17.0"
+  }
+}

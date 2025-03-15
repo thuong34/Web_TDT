@@ -1,0 +1,214 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "content": "Do something nice for someone you care about",
+      "time": "1:20:00",
+      "coin": 140
+    },
+    {
+      "id": "2",
+      "content": "Memorize a poem",
+      "time": "1:00:00",
+      "coin": 30
+    },
+    {
+      "id": "3",
+      "content": "Watch a classic movie",
+      "time": "00:20:45",
+      "coin": 65
+    },
+    {
+      "content": "Watch a documentary",
+      "time": "0:0:45",
+      "coin": 98,
+      "id": "4"
+    },
+    {
+      "id": "5",
+      "content": "Invest in cryptocurrency",
+      "time": "2:00:43",
+      "coin": 345
+    },
+    {
+      "id": "6",
+      "content": "Contribute code or a monetary donation to an open-source software project",
+      "time": "1:11:12",
+      "coin": 111
+    },
+    {
+      "id": "7",
+      "content": "Solve a Rubik's cube",
+      "time": "0:29:00",
+      "coin": 384
+    },
+    {
+      "id": "8",
+      "content": "Bake pastries for yourself and neighbor",
+      "time": "3:0:01",
+      "coin": 19
+    },
+    {
+      "id": "9",
+      "content": "Go see a Broadway production",
+      "time": "0:20:0",
+      "coin": 34
+    },
+    {
+      "id": "8dfc",
+      "content": "Read a math book",
+      "time": "00:15:00",
+      "coin": 154
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "hung",
+      "img_url": "",
+      "address_wallet": "x8s98s73bdf",
+      "balance": {
+        "coin": 500,
+        "usdt": 0
+      },
+      "task_status": [
+        {
+          "task_id": 1,
+          "time": "00:01:05",
+          "content": "read a math book",
+          "coin": 123,
+          "status": "processing",
+          "accepted_at": "2025-03-08T13:00:02.741Z"
+        }
+      ],
+      "transacion_history": [
+        {
+          "id": 1,
+          "type": "convert",
+          "details": "Quy đổi USDT -> Coin",
+          "amount": "10 USDT -> 1000 Coin",
+          "time": "27/02/2025 - 10:10",
+          "status": "Thành công"
+        },
+        {
+          "id": 2,
+          "type": "convert",
+          "details": "Quy đổi Coin -> USDT",
+          "amount": "100 Coin -> 1 USDT",
+          "time": "8/03/2025 - 00:40",
+          "status": "Thành công"
+        },
+        {
+          "id": 3,
+          "type": "task",
+          "details": "Nhận thưởng",
+          "amount": "+50 Coin",
+          "time": "8/03/2025 - 07:00",
+          "status": "Thành công"
+        },
+        {
+          "type": "task",
+          "details": "Nhận thưởng",
+          "amount": "+140 ",
+          "time": "11/03/2025 - 18:41",
+          "status": "Thành công"
+        },
+        {
+          "type": "task",
+          "details": "Nhận thưởng",
+          "amount": "+30 ",
+          "time": "11/03/2025 - 18:44",
+          "status": "Thành công"
+        },
+        {
+          "type": "task",
+          "details": "Nhận thưởng",
+          "amount": "+55",
+          "time": "11/03/2025 - 18:54",
+          "status": "Thành công"
+        },
+        {
+          "type": "task",
+          "details": "Nhận thưởng",
+          "amount": "+140  coin",
+          "time": "13/03/2025 - 17:09",
+          "status": "Thành công"
+        },
+        {
+          "type": "task",
+          "details": "Nhận thưởng",
+          "amount": "+140  coin",
+          "time": "13/03/2025 - 17:10",
+          "status": "Thành công"
+        },
+        {
+          "type": "task",
+          "details": "Nhận thưởng",
+          "amount": "+100000 coin",
+          "time": "13/03/2025 - 17:30",
+          "status": "Thành công"
+        },
+        {
+          "type": "task",
+          "details": "Nhận thưởng",
+          "amount": "+140  coin",
+          "time": "13/03/2025 - 17:36",
+          "status": "Thành công"
+        },
+        {
+          "type": "task",
+          "details": "Nhận thưởng",
+          "amount": "+30  coin",
+          "time": "13/03/2025 - 17:38",
+          "status": "Thành công"
+        },
+        {
+          "type": "task",
+          "details": "Nhận thưởng",
+          "amount": "+30  coin",
+          "time": "15/03/2025 - 11:04",
+          "status": "Thành công"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "tuan",
+      "img_url": "",
+      "address_wallet": "x8s98s73bdf",
+      "balance": {
+        "coin": 0,
+        "usdt": 0
+      },
+      "task_status": []
+    },
+    {
+      "id": "3",
+      "name": "mai",
+      "img_url": "",
+      "address_wallet": "x8s98s73bdf",
+      "balance": {
+        "coin": 0,
+        "usdt": 0
+      },
+      "task_status": []
+    },
+    {
+      "id": "9d65",
+      "name": "huy hoang",
+      "img_url": "",
+      "address_wallet": "x8s98s73bdf",
+      "balance": {
+        "coin": 91,
+        "usdt": 0
+      }
+    },
+    {
+      "id": "0x0",
+      "name": "admin",
+      "img_url": "",
+      "address_wallet": "648fyxxiy22p9",
+      "role": "admin"
+    }
+  ]
+}
