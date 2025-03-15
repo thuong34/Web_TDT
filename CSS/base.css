@@ -70,9 +70,3 @@ button:hover, .btn:hover{
 .btn__outline.primary{color: var(--color-primary);}
 .btn__outline.warn{color: var(--color-warn);}
 .btn__outline.danger{color: var(--color-danger);}
-.btn__suggest--read:hover {
-    background-color: var(--color-primary); /* Màu xanh submit */
-    color: #fff;
-    border-color:var(--color-primary);; 
-    transition: all 0.3s ease; 
-}

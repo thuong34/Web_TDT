@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Quản lý người dùng & nhiệm vụ</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h1>Admin Dashboard</h1>
+        <ul>
+            <li class="nav-item active" ><a href="#task" data-tab="tasks">Quản lý Nhiệm vụ</a></li>
+            <li class ="nav-item"><a href="#user"  data-tab="users">Quản lý Người Dùng</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="tasks" class="tab-content active">
+            <h2>Quản lý Nhiệm vụ</h2>
+            <form id="taskForm">
+                <input type="text" name="content" placeholder="Nội dung nhiệm vụ" required>
+                <input type="text" name="time" placeholder="Thời gian (hh:mm:ss)" required>
+                <input type="number" name="coin" placeholder="Coin" required>
+                <button type="submit">Thêm</button>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nhiệm vụ</th>
+                        <th>Thời gian</th>
+                        <th>Coin</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody id="taskList"></tbody>
+            </table>
+        </section>
+
+        <section id="users" class="tab-content">
+            <h2>Quản lý Người Dùng</h2>
+            <form id="userForm">
+                <input type="text" name="name" placeholder="Tên user" required>
+                <input type="number" name="coin" placeholder="Coin" required>
+                <button type="submit">Thêm</button>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên</th>
+                        <th>Coin</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody id="userList"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script type="module" src="../js/admin.js"></script>
+    <script type="module" src="../js/modules/taskModule.js"></script>
+    <script type="module" src="../js/modules/userModule.js"></script>
+</body>
+</html>

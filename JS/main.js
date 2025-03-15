@@ -28,20 +28,38 @@ navItems.forEach((item, index)=>{
 const btnConvert = document.querySelector(".btn__recent--convert")
 const modals = document.querySelectorAll(".modal__wrapper")
 const modalConvert = modals[0]
-const modalAward = modals[1]
+export const modalAward = modals[1]
 
 // mở modal convert
 btnConvert.addEventListener('click',(e)=>{
     modalConvert.classList.add("modal__convert")
     const formConvert = modalConvert.querySelector('form.modal__content')
-    let inputUsdt = formConvert.querySelector('[name="input__usdt"]')
-    let inputCoin = formConvert.querySelector('[name="input__coin"]')
-    
+    let labels = formConvert.querySelectorAll(".modal__label")
+    let inputs = formConvert.querySelectorAll("input")
+    const iconSwap = formConvert.querySelector('.modal__content--icon img')
+
+    // ratio: tỉ lệ
+    function inputSwap(ratio){
+        inputs[1].value = (Number(inputs[0].value.trim())*ratio).toString()
+        inputs[0].focus()
+        inputs[0].value=""
+    }
+    // đổi chỗ label
+    function swap(labelArray){
+        let labelTemp = labelArray[0].innerText
+        labelArray[0].innerText = labelArray[1].innerText
+        labelArray[1].innerText = labelTemp
+    }
+
+    iconSwap.onclick = ()=>swap(labels)
+
     formConvert.onsubmit = (e)=>{
         e.preventDefault()
-        inputCoin.value = (Number(inputUsdt.value.trim())*100).toString()
-        inputUsdt.focus()
-        inputUsdt.value=""
+        if(labels[0].innerText.toUpperCase() === "USDT")
+            inputSwap(100)
+        else 
+            inputSwap(0.01)
+        
     }
     // dong modal khi click button "hủy"
     closeModal(modalConvert,'modal__convert',formConvert)
@@ -52,35 +70,9 @@ btnConvert.addEventListener('click',(e)=>{
         }
     }
 })
-// mở modal nhận thưởng
-document.querySelector('.task__processingList').addEventListener('click',(e)=>{
-    const btnTaskSubmit = e.target.closest('.task__item.success .btn__task--submit')
-    if(btnTaskSubmit){
-        modalAward.classList.add("modal__award")
-        // lấy số coin ở task--item
-        let taskItem = btnTaskSubmit.closest('.task__item.success')
-        let coins = taskItem.querySelector('.task__item--coin span').innerText
-        // gán vào content__coin--value ở modal
-        let coinModal = modalAward.querySelector('.content__coin--value')
-        coinModal.innerHTML = coins
-        
-        // dong modal khi click vao button / vung ngoai modal
-        const formAward = modalAward.querySelector('.modal__btn')
-        closeModal(modalAward,'modal__award',formAward)
-        modalAward.onclick = (e)=>{
-            if(!e.target.closest('.modal')){
-                modalAward.classList.remove('modal__award')
-            }
-        }
-        // disable btn lại để tránh nhận coin nhiều lần:)))
-        btnTaskSubmit.classList.add('btn__disable')
-    }
-})
-document.querySelector(".modal__btn--back").addEventListener("click", function () {
-    window.location.href = "../html/index.html";
-});
+
 // dong modal
-function closeModal(modal,modalClass,modalForm){
+export function closeModal(modal,modalClass,modalForm){
     const btnDestroy = modalForm.querySelector('.modal__btn--nochange')
     btnDestroy.addEventListener('click',()=>{
         modal.classList.remove(modalClass)
@@ -108,7 +100,7 @@ btnFilterCurrent.addEventListener('click',function(){
     toggleTaskList(false)
     toggleBtnOutline(this,btnFilterNew,true)
 })
-// lọc nhiệm vụ bằng select điểm thưởng, thời gian
+// sắp xếp nhiệm vụ bằng select điểm thưởng, thời gian
 let selectTaskInput = document.querySelector('.task__sort--input')
 selectTaskInput.onchange = (e)=>{
     const sortBy = e.target.value
@@ -136,16 +128,32 @@ selectTaskInput.onchange = (e)=>{
         taskListContainer.appendChild(task)
     })
 }
-// history button
-// const btnFilterHistorys = document.querySelectorAll('.history__filterBtn button')
-// btnFilterHistorys.forEach(btn=>{
-//     btn.onclick = ()=>{
-//         document.querySelector('.history__filterBtn button.active').classList.remove('active')
-//         btn.classList.add('active')
-//     }
-// })
+// format date
+export function formatDate(date) {
+    return new Intl.DateTimeFormat('vi-VN', { 
+        day: '2-digit', month: '2-digit', year: 'numeric' 
+    }).format(date) + " - " + date.toTimeString().slice(0, 5);
+}
 
+//xem tat ca index
+document.addEventListener("DOMContentLoaded", function () {
+    const viewAllTasksBtn = document.querySelector(".btn__suggest--read");
+    const homeContent = document.querySelector(".content__home");
+    const taskListContent = document.querySelector(".content__task");
 
+    if (viewAllTasksBtn && homeContent && taskListContent) {
+        viewAllTasksBtn.addEventListener("click", function () {
+            // Ẩn trang chủ
+            homeContent.classList.remove("active");
+
+            // Hiển thị danh sách nhiệm vụ
+            taskListContent.classList.add("active");
+
+            // Cuộn lên đầu trang (tùy chọn)
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+});
 //logout
 document.addEventListener("DOMContentLoaded", () => {
     const logoutLink = document.querySelector('.logout-link');
@@ -159,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         confirmLogout.addEventListener('click', () => {
-            window.location.href = "../HTML/auth.html"; // Chuyển trang
+            window.location.href = "../page/auth.html"; // Chuyển trang
         });
 
         cancelLogout.addEventListener('click', () => {
@@ -182,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
         confirmDelete.addEventListener('click', () => {
             alert("Đã xóa thành công."); 
             deletePopup.style.display = "none";
-            window.location.href = "../HTML/auth.html";
+            window.location.href = "../page/auth.html";
         });
 
         cancelDelete.addEventListener('click', () => {
@@ -190,15 +198,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-
-//xoa nhiem vu
-function handleDeleteTask(event) {
-    if (event.target.classList.contains('btn__task--delete')) {
-        let btnDelete = event.target
-        let isDelete = confirm("Bạn có chắc chắn xóa nhiệm vụ này?")
-        if (isDelete) {
-            const taskItem = btnDelete.closest('.task__item')
-            taskItem.remove()
-        }
-    }
-}

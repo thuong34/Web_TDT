@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết Nối Ví MetaMask</title>
+    <link rel="stylesheet" href="../css/metamask_connect.css">
+</head>
+<body>
+    <header>
+        <h1 class="logo">MM</h1>
+    </header>
+    <div class="popup-container">
+            <p class="description">Kết nối với hệ thống giao dịch bằng tiền điện tử</p>
+            <div class="popup">
+                <label for="wallet-address">Địa chỉ ví MetaMask của bạn:</label>
+                <input type="text" id="wallet-address" >
+            </div>
+            <div class="permissions">
+                <p class="text">Quyền được yêu cầu:</p>
+                <ul>
+                    <li>
+                        <input type="checkbox" id="view-address" checked>
+                        <label for="view-address">Xem địa chỉ ví của bạn.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="view-balance" checked>
+                        <label for="view-balance">Xem số dư ví của bạn.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="approve-transactions" checked>
+                        <label for="approve-transactions">Yêu cầu phê duyệt giao dịch.</label>
+                    </li>
+                </ul>
+            </div>
+            <p class="note">
+                Bằng cách kết nối, bạn đồng ý cho phép website này truy cập thông tin của bạn. 
+                Website này sẽ không thể thực hiện giao dịch mà không có sự phê duyệt của bạn.
+            </p>
+            <div class="buttons">
+                <button class="cancel-btn" onclick="goBack()">Từ chối</button>
+                <button class="connect-btn">Xác nhận kết nối</button>
+            </div>
+    </div>
+    <footer id="footer">
+        <div class="copy-right">@2025 Hệ thống giao dịch bằng tiền điện tử</div>
+    </footer>
+
+    <script src="../js/metamask_connect.js"></script>
+</body>
+</html>

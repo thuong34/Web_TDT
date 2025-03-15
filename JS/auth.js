@@ -45,7 +45,7 @@ loginForm.addEventListener('submit', async function (e) {
         if (response.ok) {
             localStorage.setItem("token", data.token);
             alert("Đăng nhập thành công!");
-            window.location.href = "../HTML/connect_wallet.html";
+            window.location.href = "../page/connect_wallet.html";
         } else {
             showError(data.error || "Đăng nhập thất bại!");
         }
@@ -110,7 +110,7 @@ function showError(message) {
 }
 //Hàm kết nối connect_wallet
 function connect() {
-    window.location.href = "../HTML/metamask-connect.html";
+    window.location.href = "../page/metamask_connect.html";
 }
 //ham quay lai install-metamask
 function goBack() {
